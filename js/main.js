@@ -57,7 +57,7 @@ $(document).ready(function(){
 	//Créer mon efhweihrggone (octaèdre)
 	
 	//Créer l'objet de base
-	var octahedron = new THREE.OctahedronGeometry();
+	var octahedron = new THREE.OctahedronBufferGeometry();
 
 	
 	
@@ -347,6 +347,7 @@ $(document).ready(function(){
 		
 		console.log(event);
 		console.log(danslazone);
+		console.log(intersects);
 		
 	}
 	
@@ -387,13 +388,19 @@ $(document).ready(function(){
 		// calculate objects intersecting the picking ray
 		var intersects = raycaster.intersectObjects( scene.children, true );
 		danslazone = intersects.length > 0;
-		//console.log(danslazone);
-
-		for ( var i = 0; i < intersects.length; i++ ) {
-
+		
+		//ANALYSER L'OBJET INTERSECT
+		if(danslazone===true){
 			
+			for ( var i = 0; i < intersects.length; i++ ) {
+				
 
+
+			}
+			
 		}
+
+		
 
 		
 		renderer.render(scene, camera);
