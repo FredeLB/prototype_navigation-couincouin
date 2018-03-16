@@ -343,7 +343,7 @@ $(document).ready(function(){
 	//Pour m'enligner avec les clic/touch
 		
 	
-	function dansLaZone(event){
+	function funcDansLaZone(event){
 		
 		console.log(event);
 		console.log(danslazone);
@@ -385,7 +385,7 @@ $(document).ready(function(){
 		raycaster.setFromCamera( mouse, camera );
 
 		// calculate objects intersecting the picking ray
-		var intersects = raycaster.intersectObjects( scene.children );
+		var intersects = raycaster.intersectObjects( scene.children, true );
 		danslazone = intersects.length > 0;
 		//console.log(danslazone);
 
@@ -415,8 +415,8 @@ $(document).ready(function(){
 	
 	animate();
 	window.addEventListener( 'resize', onWindowResize, false );
-	document.addEventListener("click", dansLaZone, false);
-	document.addEventListener("touchstart", dansLaZone, false);
+	document.addEventListener("click", funcDansLaZone, false);
+	//document.addEventListener("touchstart", funcDansLaZone, false);
 	document.addEventListener( 'mousemove', onMouseMove, false );
 	
 	
@@ -433,6 +433,8 @@ $(document).ready(function(){
 	
 	
 	//Zone de tests
+	
+	console.log();
 
 
 	
