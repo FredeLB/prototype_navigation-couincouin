@@ -347,7 +347,6 @@ $(document).ready(function(){
 		
 		console.log(event);
 		console.log(danslazone);
-		console.log(intersects);
 		
 	}
 	
@@ -394,7 +393,16 @@ $(document).ready(function(){
 			
 			for ( var i = 0; i < intersects.length; i++ ) {
 				
-
+				var intersect = intersects[0];
+				var face = intersect.face;
+				
+				if(intersect.index === 21){
+					
+					/*console.log(intersect);
+					console.log(face);
+					console.log(intersect.faceIndex);*/
+					
+				}
 
 			}
 			
@@ -441,7 +449,6 @@ $(document).ready(function(){
 	
 	//Zone de tests
 	
-	console.log();
 
 
 	
