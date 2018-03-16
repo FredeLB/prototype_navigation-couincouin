@@ -425,10 +425,10 @@ $(document).ready(function(){
 	
 	//Aide pour les axes: x=rouge y=vert z=bleu
 	
-	var axesScene = new THREE.AxesHelper( 6 );
+/*	var axesScene = new THREE.AxesHelper( 6 );
 	//var axesOcta1 = new THREE.AxesHelper( 4 );
 	scene.add( axesScene );
-	//pivot1.add( axesOcta1 );
+	//pivot1.add( axesOcta1 );*/
 	
 	
 	
