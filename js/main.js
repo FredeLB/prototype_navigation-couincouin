@@ -3,6 +3,7 @@ $(document).ready(function(){
 	
 	//three.js
 	
+	
 	if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 	
 	
@@ -24,7 +25,7 @@ $(document).ready(function(){
 	//		LUMIIÈRE
 
 	// White directional light at half intensity shining from the top.
-	var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
+	var directionalLight = new THREE.DirectionalLight( 0xffffff, 1 );
 	scene.add( directionalLight );
 
 	
@@ -75,10 +76,10 @@ $(document).ready(function(){
 	
 	//CONTROLS
 	
-	//var controls = new THREE.OrbitControls( camera );
+	var controls = new THREE.OrbitControls( camera );
 	
 	//controls.update() must be called after any manual changes to the camera's transform
-	//controls.update();
+	controls.update();
 	
 	
 	
@@ -93,12 +94,10 @@ $(document).ready(function(){
 	
 	
 	//Couleurs
-	var color1 = new THREE.MeshBasicMaterial( { color: 0xBD2325, } );
-	var color2 = new THREE.MeshBasicMaterial( { color: 0x153AC7, } );
-	var color3 = new THREE.MeshBasicMaterial( { color: 0x00ff00, } );
-	var color4 = new THREE.MeshBasicMaterial( { color: 0xF0E812, } );
-	
-	
+	var color1 = new THREE.MeshStandardMaterial({color: 0xff0000, metalness: 1});
+	var color2 = new THREE.MeshStandardMaterial({color: 0x4B11C5, metalness: 1});
+	var color3 = new THREE.MeshStandardMaterial({color: 0x17830B, metalness: 1});
+	var color4 = new THREE.MeshStandardMaterial({color: 0xCCE41D, metalness: 1});
 	
 	
 	
