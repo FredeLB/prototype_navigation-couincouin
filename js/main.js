@@ -391,10 +391,13 @@ $(document).ready(function(){
 		//ANALYSER L'OBJET INTERSECT
 		if(danslazone===true){
 			
-			for ( var i = 0; i < intersects.length; i++ ) {
+			//for ( var i = 0; i < intersects.length; i++ ) {
 				
 				var intersect = intersects[0];
 				var face = intersect.face;
+			
+			
+				console.log(intersect.faceIndex);
 				
 				if(intersect.index === 21){
 					
@@ -404,7 +407,7 @@ $(document).ready(function(){
 					
 				}
 
-			}
+			//}
 			
 		}
 
