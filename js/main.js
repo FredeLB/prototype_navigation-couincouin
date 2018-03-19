@@ -21,8 +21,13 @@ $(document).ready(function(){
 	var scene = new THREE.Scene();
 	
 	
+	//		LUMIIÈRE
+
+
+
 	
-	//TEST CLIQUABLE!!
+	
+	// 		TOUT CE QUI TOUCHE AU CLIQUABLE!!
 	var mouse = new THREE.Vector2();
 	var raycaster = new THREE.Raycaster();
 	var danslazone = false;
@@ -86,10 +91,11 @@ $(document).ready(function(){
 	
 	
 	//Couleurs
-	var color1 = new THREE.MeshBasicMaterial( { color: 0xBD2325, wireframe: true } );
-	var color2 = new THREE.MeshBasicMaterial( { color: 0x153AC7, wireframe: true } );
-	var color3 = new THREE.MeshBasicMaterial( { color: 0x00ff00, wireframe: true } );
-	var color4 = new THREE.MeshBasicMaterial( { color: 0xF0E812, wireframe: true } );
+	var color1 = new THREE.MeshBasicMaterial( { color: 0xBD2325, } );
+	var color2 = new THREE.MeshBasicMaterial( { color: 0x153AC7, } );
+	var color3 = new THREE.MeshBasicMaterial( { color: 0x00ff00, } );
+	var color4 = new THREE.MeshBasicMaterial( { color: 0xF0E812, } );
+	
 	
 	
 	
