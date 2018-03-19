@@ -372,7 +372,14 @@ $(document).ready(function(){
 		console.log("Id de l'objet: " + idObjetTouche);
 		console.log("Face touchée: " + faceTouchee);
 		console.log("Lien cliqué = " + identifierLien(idObjetTouche, faceTouchee));
+
 		
+		if((identifierLien(idObjetTouche, faceTouchee)===null)===false){
+			
+			$('#modalTest .modal-content').html("Bienvenue sur la page " + identifierLien(idObjetTouche, faceTouchee));
+			$('#modalTest').modal('toggle');
+			
+		}
 	}
 	
 	function onMouseMove(event){
