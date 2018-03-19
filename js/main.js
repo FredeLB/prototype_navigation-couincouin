@@ -26,6 +26,10 @@ $(document).ready(function(){
 	var mouse = new THREE.Vector2();
 	var raycaster = new THREE.Raycaster();
 	var danslazone = false;
+	var idObjetTouche;
+	var faceTouchee;
+	
+	var facesInteractives = [];
 	
 
 	
@@ -125,8 +129,8 @@ $(document).ready(function(){
 	
 	//Position couincouin fermé à moitié 1
 	
-	//ROUGE
-/*	pivot1.rotation.x = -(Math.PI/8);
+/*	//ROUGE
+	pivot1.rotation.x = -(Math.PI/8);
 	pivot1.rotation.z = (Math.PI/7);
 	
 	//BLEU
@@ -144,8 +148,8 @@ $(document).ready(function(){
 	
 	
 	//Position couincouin fermé à moitié 2
-/*	
-	//ROUGE
+	
+/*	//ROUGE
 	pivot1.rotation.x = (Math.PI/8);
 	pivot1.rotation.z = (Math.PI/7);
 	
@@ -159,7 +163,7 @@ $(document).ready(function(){
 	
 	//JAUNE
 	pivot4.rotation.x = (Math.PI/8);		
-	pivot4.rotation.z = (Math.PI/7);	*/	
+	pivot4.rotation.z = (Math.PI/7);*/		
 	
 	
 	
@@ -347,6 +351,8 @@ $(document).ready(function(){
 		
 		console.log(event);
 		console.log(danslazone);
+		console.log(idObjetTouche);
+		console.log(faceTouchee);
 		
 	}
 	
@@ -390,29 +396,18 @@ $(document).ready(function(){
 		
 		//ANALYSER L'OBJET INTERSECT
 		if(danslazone===true){
+							
+			var intersect = intersects[0];
+			faceTouchee = intersect.faceIndex;
+			idObjetTouche = intersect.object.id;
+						
+		}else{
 			
-			//for ( var i = 0; i < intersects.length; i++ ) {
-				
-				var intersect = intersects[0];
-				var face = intersect.face;
-			
-			
-				console.log(intersect.faceIndex);
-				
-				if(intersect.index === 21){
-					
-					/*console.log(intersect);
-					console.log(face);
-					console.log(intersect.faceIndex);*/
-					
-				}
-
-			//}
+			faceTouchee = null;
+			idObjetTouche = null;
 			
 		}
-
 		
-
 		
 		renderer.render(scene, camera);
 		
