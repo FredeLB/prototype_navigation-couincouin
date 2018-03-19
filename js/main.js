@@ -377,9 +377,9 @@ $(document).ready(function(){
 		
 		//console.log(event);
 		//console.log(danslazone);
-		console.log("Id de l'objet: " + idObjetTouche);
-		console.log("Face touchée: " + faceTouchee);
-		console.log("Lien cliqué = " + identifierLien(idObjetTouche, faceTouchee));
+		//console.log("Id de l'objet: " + idObjetTouche);
+		//console.log("Face touchée: " + faceTouchee);
+		//console.log("Lien cliqué = " + identifierLien(idObjetTouche, faceTouchee));
 
 		
 		if((identifierLien(idObjetTouche, faceTouchee)===null)===false){
