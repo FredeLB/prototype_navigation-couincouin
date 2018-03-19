@@ -29,7 +29,14 @@ $(document).ready(function(){
 	var idObjetTouche;
 	var faceTouchee;
 	
-	var facesInteractives = [];
+	var facesInteractives = [
+		
+		[{obj: 9, face: 9}, {obj: 11, face: 21}],
+		[{obj: 8, face: 21}, {obj: 10, face: 9}],
+		[{obj: 10, face: 12}, {obj: 9, face: 0}],
+		[{obj: 11, face: 0}, {obj: 8, face: 12}]
+		
+	];
 	
 
 	
@@ -95,7 +102,6 @@ $(document).ready(function(){
 	//Créer des mesh qui serviront de point de pivot!
 
 	var pivot1 = new THREE.Object3D();
-	pivot1.id = "pivot";
 	pivot1.add( octa1 );
 	var pivot2 = new THREE.Object3D();
 	pivot2.add( octa2 );
@@ -351,8 +357,8 @@ $(document).ready(function(){
 		
 		console.log(event);
 		console.log(danslazone);
-		console.log(idObjetTouche);
-		console.log(faceTouchee);
+		console.log("Id de l'objet: " + idObjetTouche);
+		console.log("Face touchée: " + faceTouchee);
 		
 	}
 	
