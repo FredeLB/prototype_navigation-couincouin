@@ -31,10 +31,22 @@ $(document).ready(function(){
 	
 	var facesInteractives = [
 		
-		[{obj: 9, face: 9}, {obj: 11, face: 21}],
-		[{obj: 8, face: 21}, {obj: 10, face: 9}],
-		[{obj: 10, face: 12}, {obj: 9, face: 0}],
-		[{obj: 11, face: 0}, {obj: 8, face: 12}]
+		[
+			{obj: 9, face: 9}, 
+			{obj: 11, face: 21}
+		],
+		[
+			{obj: 8, face: 21}, 
+			{obj: 10, face: 9}
+		],
+		[
+			{obj: 10, face: 12}, 
+			{obj: 9, face: 0}
+		],
+		[
+			{obj: 11, face: 0}, 
+			{obj: 8, face: 12}
+		]
 		
 	];
 	
@@ -355,10 +367,11 @@ $(document).ready(function(){
 	
 	function funcDansLaZone(event){
 		
-		console.log(event);
-		console.log(danslazone);
+		//console.log(event);
+		//console.log(danslazone);
 		console.log("Id de l'objet: " + idObjetTouche);
 		console.log("Face touchée: " + faceTouchee);
+		console.log("Lien cliqué = " + identifierLien(idObjetTouche, faceTouchee));
 		
 	}
 	
@@ -374,7 +387,34 @@ $(document).ready(function(){
 	
 	//		Matcher les faces avec les pages qu'elles ouvrent
 	
-	
+	function identifierLien(objet, face){
+		
+		var faceA = {};
+		var lien = null;
+		
+		faceA.obj = objet;
+		faceA.face = face;
+				
+		for(var i=0; i<facesInteractives.length; i++){
+			
+			var match = false;
+			var page = facesInteractives[i];
+						
+			for(var j=0; j<2; j++){
+				
+				var faceB = page[j];
+				match = (faceB.face === faceA.face && faceB.obj === faceA.obj);
+								
+				if(match===true){
+					
+					lien = i;
+					
+				}
+			}
+		}
+		
+		return lien;
+	}
 	
 	
 	
