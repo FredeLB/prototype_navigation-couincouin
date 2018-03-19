@@ -372,6 +372,12 @@ $(document).ready(function(){
 	
 	
 	
+	//		Matcher les faces avec les pages qu'elles ouvrent
+	
+	
+	
+	
+	
 
 
 	
