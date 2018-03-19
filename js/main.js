@@ -20,11 +20,14 @@ $(document).ready(function(){
 	
 	//Scene
 	var scene = new THREE.Scene();
+	var couleurBG = new THREE.Color( 0xffffff );
+	scene.background = couleurBG;
+	console.log(scene);
 	
 	
 	//		LUMIIÈRE
 
-	var pointLight = new THREE.PointLight( 0xffffff, 3, 50 );
+	var pointLight = new THREE.PointLight( 0xffffff, 4, 50 );
 	pointLight.position.set( 1, 5, 1 );
 	scene.add( pointLight );
 
@@ -380,8 +383,8 @@ $(document).ready(function(){
 		
 		//console.log(event);
 		//console.log(danslazone);
-		//console.log("Id de l'objet: " + idObjetTouche);
-		//console.log("Face touchée: " + faceTouchee);
+		console.log("Id de l'objet: " + idObjetTouche);
+		console.log("Face touchée: " + faceTouchee);
 		//console.log("Lien cliqué = " + identifierLien(idObjetTouche, faceTouchee));
 
 		
@@ -450,12 +453,12 @@ $(document).ready(function(){
 		
 		requestAnimationFrame(animate);
 		
-		var vitesseAnim = 0.009;
+/*		var vitesseAnim = 0.009;
 		
 		vaEtVient(pivot1, 0.5, 0, "z", vitesseAnim);
 		vaEtVient(pivot2, -0.5, 0, "z", vitesseAnim);
 		vaEtVient(pivot3, -0.5, 0, "x", vitesseAnim);
-		vaEtVient(pivot4, 0.5, 0, "x", vitesseAnim);
+		vaEtVient(pivot4, 0.5, 0, "x", vitesseAnim);*/
 		
 		// update the picking ray with the camera and mouse position
 		raycaster.setFromCamera( mouse, camera );
