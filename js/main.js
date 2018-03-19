@@ -24,9 +24,13 @@ $(document).ready(function(){
 	
 	//		LUMIIÈRE
 
-	// White directional light at half intensity shining from the top.
-	var directionalLight = new THREE.DirectionalLight( 0xffffff, 1 );
-	scene.add( directionalLight );
+	var pointLight = new THREE.PointLight( 0xffffff, 3, 50 );
+	pointLight.position.set( 1, 5, 1 );
+	scene.add( pointLight );
+
+	
+	
+	
 
 	
 	
@@ -76,10 +80,10 @@ $(document).ready(function(){
 	
 	//CONTROLS
 	
-	var controls = new THREE.OrbitControls( camera );
+/*	var controls = new THREE.OrbitControls( camera );
 	
 	//controls.update() must be called after any manual changes to the camera's transform
-	controls.update();
+	controls.update();*/
 	
 	
 	
@@ -446,12 +450,12 @@ $(document).ready(function(){
 		
 		requestAnimationFrame(animate);
 		
-/*		var vitesseAnim = 0.009;
+		var vitesseAnim = 0.009;
 		
 		vaEtVient(pivot1, 0.5, 0, "z", vitesseAnim);
 		vaEtVient(pivot2, -0.5, 0, "z", vitesseAnim);
 		vaEtVient(pivot3, -0.5, 0, "x", vitesseAnim);
-		vaEtVient(pivot4, 0.5, 0, "x", vitesseAnim);*/
+		vaEtVient(pivot4, 0.5, 0, "x", vitesseAnim);
 		
 		// update the picking ray with the camera and mouse position
 		raycaster.setFromCamera( mouse, camera );
@@ -508,6 +512,12 @@ $(document).ready(function(){
 	//var axesOcta1 = new THREE.AxesHelper( 4 );
 	scene.add( axesScene );
 	//pivot1.add( axesOcta1 );*/
+	
+	//	HELPER LUMIERE
+	
+/*	var sphereSize = 1;
+	var pointLightHelper = new THREE.PointLightHelper( pointLight, sphereSize );
+	scene.add( pointLightHelper );*/
 	
 	
 	
