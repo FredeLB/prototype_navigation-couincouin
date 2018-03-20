@@ -1,0 +1,53 @@
+	
+	
+	//Position couincouin fermé!
+
+/*	pivot1.rotation.z = (Math.PI/4).toFixed(3);
+	pivot2.rotation.z = -(Math.PI/4).toFixed(3);
+	pivot3.rotation.x = -(Math.PI/4).toFixed(3);
+	pivot4.rotation.x = (Math.PI/4).toFixed(3);	*/
+	
+	
+	
+	
+	//Position couincouin fermé à moitié 1
+	
+/*	//ROUGE
+	pivot1.rotation.x = -(Math.PI/8);
+	pivot1.rotation.z = (Math.PI/7);
+	
+	//BLEU
+	pivot2.rotation.x = (Math.PI/7);
+	pivot2.rotation.z = -(Math.PI/8);
+	
+	//VERT
+	pivot3.rotation.x = -(Math.PI/8);
+	pivot3.rotation.z = (Math.PI/7);
+	
+	//JAUNE
+	pivot4.rotation.x = (Math.PI/8);		
+	pivot4.rotation.z = -(Math.PI/7);	*/
+	
+
+	
+	
+	//Position couincouin fermé à moitié 2
+	
+/*	//ROUGE
+	pivot1.rotation.x = (Math.PI/8);
+	pivot1.rotation.z = (Math.PI/7);
+	
+	//BLEU
+	pivot2.rotation.x = -(Math.PI/7);
+	pivot2.rotation.z = -(Math.PI/8);
+	
+	//VERT
+	pivot3.rotation.x = -(Math.PI/8);
+	pivot3.rotation.z = -(Math.PI/7);
+	
+	//JAUNE
+	pivot4.rotation.x = (Math.PI/8);		
+	pivot4.rotation.z = (Math.PI/7);*/		
+	
+	
+	

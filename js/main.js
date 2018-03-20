@@ -673,7 +673,8 @@ $(document).ready(function(){
 			for(var i=1; i<3; i++){
 
 				for(var j=0; j<flagsPivots[i].length; j++){
-
+					
+					flagsPivots[i][j].compteur = 0;
 					flagsPivots[i][j].flag = true;
 
 				}
@@ -684,8 +685,11 @@ $(document).ready(function(){
 		}else if(nbrClics===1){
 			
 			flagZero = true;
+			nbrClics++;
 		
 		}
+		
+		console.log(nbrClics);
 				
 		
 	});
