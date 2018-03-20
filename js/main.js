@@ -39,6 +39,9 @@ $(document).ready(function(){
 	var danslazone = false;
 	var idObjetTouche;
 	var faceTouchee;
+	var nbrClics = 0;
+	var flagZero = false;
+	
 	
 	var facesInteractives = [
 		
@@ -257,13 +260,17 @@ $(document).ready(function(){
 	
 	var flagsPivots = [
 		
+		// Pour vaEtVient
 		[
 			{id: pivot1.id, flag: true, compteur: 0},
 			{id: pivot2.id, flag: true, compteur: 0},
 			{id: pivot3.id, flag: true, compteur: 0},
 			{id: pivot4.id, flag: true, compteur: 0}
 			
-		],		
+		],	
+		
+		// Pour AnimCoucou1
+		
 		[
 			{id: pivot1.id, flag: false, positionx: -(Math.PI/8), compteur: 0},
 			{id: pivot2.id, flag: false, positionx: (Math.PI/7), compteur: 0},
@@ -276,13 +283,6 @@ $(document).ready(function(){
 			{id: pivot2.id, flag: false, positionz: -(Math.PI/8), compteur: 0},
 			{id: pivot3.id, flag: false, positionz: (Math.PI/7), compteur: 0},
 			{id: pivot4.id, flag: false, positionz: -(Math.PI/7), compteur: 0}
-			
-		],		
-		[
-			{id: pivot1.id, flag: false, positionz: 0, compteur: 0},
-			{id: pivot2.id, flag: false, positionz: 0, compteur: 0},
-			{id: pivot3.id, flag: false, positionz: 0, compteur: 0},
-			{id: pivot4.id, flag: false, positionz: 0, compteur: 0}
 			
 		]
 	];
@@ -298,8 +298,8 @@ $(document).ready(function(){
 		var lim1 = b;
 		var lim2 = c;
 		var tableFlags = flagsPivots[anim];
-		console.log(tableFlags);
-		console.log(trouverIndex(obj, tableFlags));
+		//console.log(tableFlags);
+		//console.log(trouverIndex(obj, tableFlags));
 		
 		// à faire!!!
 		var flagAnim = tableFlags[trouverIndex(obj, tableFlags)].flag;
@@ -414,7 +414,7 @@ $(document).ready(function(){
 				}else{
 
 					flagAnim = false;
-					console.log(compteurAnim);
+					//console.log(compteurAnim);
 
 				}
 			}else{
@@ -428,7 +428,7 @@ $(document).ready(function(){
 				}else{
 
 					flagAnim = false;
-					console.log(compteurAnim);
+					//console.log(compteurAnim);
 
 				}
 				
@@ -475,25 +475,47 @@ $(document).ready(function(){
 		animSansLoop(pivot4, "x", vitesseAnim, animationX);
 		animSansLoop(pivot4, "z", vitesseAnim, animationZ);
 		
-/*		vaEtVient(pivot1, -(Math.PI/8), 0, "x", vitesseAnim, animationX);
-		vaEtVient(pivot1, (Math.PI/7), 0, "z", vitesseAnim, animationZ);
-		
-		vaEtVient(pivot2, (Math.PI/7), 0, "x", vitesseAnim, animationX);
-		vaEtVient(pivot2, -(Math.PI/8), 0, "z", vitesseAnim, animationZ);
-		
-		vaEtVient(pivot3, -(Math.PI/8), 0, "x", vitesseAnim, animationX);
-		vaEtVient(pivot3, (Math.PI/7), 0, "z", vitesseAnim, animationZ);
-		
-		vaEtVient(pivot4, (Math.PI/8), 0, "x", vitesseAnim, animationX);
-		vaEtVient(pivot4, -(Math.PI/7), 0, "z", vitesseAnim, animationZ);*/
-		
 	}
 	
-	function animCoucou3(v){
+	function animCoucouZero(v){
 		
-		
-		
+		if(flagZero===true){
+			
+			pivot1.rotation.x += v;
+			pivot1.rotation.z -= v;
+			
+			pivot2.rotation.x -= v;
+			pivot2.rotation.z += v;
+			
+			pivot3.rotation.x += v;
+			pivot3.rotation.z -= v;
+			
+			pivot4.rotation.x -= v;
+			pivot4.rotation.z += v;
+			
+			
+			
+			if(pivot1.rotation.x>=0){
+				
+				pivot1.rotation.x = 0;
+				pivot1.rotation.z = 0;
+				
+				pivot2.rotation.x = 0;
+				pivot2.rotation.z = 0;
+				
+				pivot3.rotation.x = 0;
+				pivot3.rotation.z = 0;
+				
+				pivot4.rotation.x = 0;
+				pivot4.rotation.z = 0;
+				
+				
+				flagZero = false;
+				
+			}
+		}
 	}
+	
 	
 	
 
@@ -523,8 +545,8 @@ $(document).ready(function(){
 		
 		//console.log(event);
 		//console.log(danslazone);
-		console.log("Id de l'objet: " + idObjetTouche);
-		console.log("Face touchée: " + faceTouchee);
+		//console.log("Id de l'objet: " + idObjetTouche);
+		//console.log("Face touchée: " + faceTouchee);
 		//console.log("Lien cliqué = " + identifierLien(idObjetTouche, faceTouchee));
 
 		
@@ -595,6 +617,7 @@ $(document).ready(function(){
 		
 		//animCoucou1(0.009);
 		animCoucou2(0.009);
+		animCoucouZero(0.009);
 		
 		
 		// update the picking ray with the camera and mouse position
@@ -644,7 +667,6 @@ $(document).ready(function(){
 	
 	document.getElementById("btncouin").addEventListener('click', function(){
 		
-		var nbrClics = 0;
 		
 		if(nbrClics===0){
 			
@@ -661,13 +683,8 @@ $(document).ready(function(){
 			
 		}else if(nbrClics===1){
 			
-			var i2 = 3;
-			
-			for(var j2=0; j2<flagsPivots[i2].length; j2++){
-
-				flagsPivots[i2][j2].flag = true;
-
-			}			
+			flagZero = true;
+		
 		}
 				
 		
