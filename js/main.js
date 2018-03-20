@@ -265,13 +265,19 @@ $(document).ready(function(){
 			
 		],		
 		[
-			{id: pivot1.id, flag: true, positionx: -(Math.PI/8)},
-			{id: pivot2.id, flag: true, positionx: (Math.PI/7)},
-			{id: pivot3.id, flag: true, positionx: -(Math.PI/8)},
-			{id: pivot4.id, flag: true, positionx: (Math.PI/8)}
+			{id: pivot1.id, flag: true, positionx: -(Math.PI/8), compteur: 0},
+			{id: pivot2.id, flag: true, positionx: (Math.PI/7), compteur: 0},
+			{id: pivot3.id, flag: true, positionx: -(Math.PI/8), compteur: 0},
+			{id: pivot4.id, flag: true, positionx: (Math.PI/8), compteur: 0}
 			
-		]		
-		
+		],		
+		[
+			{id: pivot1.id, flag: true, positionz: (Math.PI/7), compteur: 0},
+			{id: pivot2.id, flag: true, positionz: -(Math.PI/8), compteur: 0},
+			{id: pivot3.id, flag: true, positionz: (Math.PI/7), compteur: 0},
+			{id: pivot4.id, flag: true, positionz: -(Math.PI/7), compteur: 0}
+			
+		]
 	];
 	
 
@@ -368,34 +374,66 @@ $(document).ready(function(){
 		
 	}
 	
-	function animSansLoop(objet, axe1, axe2, vitesse, anim){
+	function animSansLoop(objet, axe, vitesse, anim){
 		
 		var tableFlags = flagsPivots[anim];
-		var flagAnim = tableFlags[trouverIndex(obj, tableFlags)].flag;
-		var repere;
+		var flagAnim = tableFlags[trouverIndex(objet, tableFlags)].flag;
+		var compteurAnim = tableFlags[trouverIndex(objet, tableFlags)].compteur;
+		var limite;
 		
 		
-		if(axe1==="x"){
+		if(axe==="x"){
 			
-			repere = tableFlags[trouverIndex(objet, tableFlags)].positionx;
+			limite = tableFlags[trouverIndex(objet, tableFlags)].positionx;
 			
-		}else if(axe1==="y"){
+		}else if(axe==="y"){
 			
-			repere = tableFlags[trouverIndex(objet, tableFlags)].positiony;
+			limite = tableFlags[trouverIndex(objet, tableFlags)].positiony;
 			
-		}else if(axe1==="z"){
+		}else if(axe==="z"){
 			
-			repere = tableFlags[trouverIndex(objet, tableFlags)].positionz;
+			limite = tableFlags[trouverIndex(objet, tableFlags)].positionz;
 			
 		}
 		
 		
-		if(axerepere>0){
+		
+		if(flagAnim===true){
 			
-			rotation(objet, axe1, "plus", vitesse);
-			
+			if(limite>0){
+
+				compteurAnim+=vitesse;
+
+				if(compteurAnim<limite){
+
+					rotation(objet, axe, "plus", vitesse);
+
+				}else{
+
+					flagAnim = false;
+					console.log(compteurAnim);
+
+				}
+			}else{
+				
+				compteurAnim-=vitesse;
+
+				if(compteurAnim>limite){
+
+					rotation(objet, axe, "moins", vitesse);
+
+				}else{
+
+					flagAnim = false;
+					console.log(compteurAnim);
+
+				}
+				
+			}
 		}
 		
+		tableFlags[trouverIndex(objet, tableFlags)].flag = flagAnim;
+		tableFlags[trouverIndex(objet, tableFlags)].compteur = compteurAnim;
 		
 		
 		
@@ -421,6 +459,18 @@ $(document).ready(function(){
 		var vitesseAnim = v;
 		var animationX = 1;
 		var animationZ = 2;
+		
+		animSansLoop(pivot1, "x", vitesseAnim, animationX);
+		animSansLoop(pivot1, "z", vitesseAnim, animationZ);
+		
+		animSansLoop(pivot2, "x", vitesseAnim, animationX);
+		animSansLoop(pivot2, "z", vitesseAnim, animationZ);
+		
+		animSansLoop(pivot3, "x", vitesseAnim, animationX);
+		animSansLoop(pivot3, "z", vitesseAnim, animationZ);
+		
+		animSansLoop(pivot4, "x", vitesseAnim, animationX);
+		animSansLoop(pivot4, "z", vitesseAnim, animationZ);
 		
 /*		vaEtVient(pivot1, -(Math.PI/8), 0, "x", vitesseAnim, animationX);
 		vaEtVient(pivot1, (Math.PI/7), 0, "z", vitesseAnim, animationZ);
