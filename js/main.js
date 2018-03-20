@@ -265,17 +265,24 @@ $(document).ready(function(){
 			
 		],		
 		[
-			{id: pivot1.id, flag: true, positionx: -(Math.PI/8), compteur: 0},
-			{id: pivot2.id, flag: true, positionx: (Math.PI/7), compteur: 0},
-			{id: pivot3.id, flag: true, positionx: -(Math.PI/8), compteur: 0},
-			{id: pivot4.id, flag: true, positionx: (Math.PI/8), compteur: 0}
+			{id: pivot1.id, flag: false, positionx: -(Math.PI/8), compteur: 0},
+			{id: pivot2.id, flag: false, positionx: (Math.PI/7), compteur: 0},
+			{id: pivot3.id, flag: false, positionx: -(Math.PI/8), compteur: 0},
+			{id: pivot4.id, flag: false, positionx: (Math.PI/8), compteur: 0}
 			
 		],		
 		[
-			{id: pivot1.id, flag: true, positionz: (Math.PI/7), compteur: 0},
-			{id: pivot2.id, flag: true, positionz: -(Math.PI/8), compteur: 0},
-			{id: pivot3.id, flag: true, positionz: (Math.PI/7), compteur: 0},
-			{id: pivot4.id, flag: true, positionz: -(Math.PI/7), compteur: 0}
+			{id: pivot1.id, flag: false, positionz: (Math.PI/7), compteur: 0},
+			{id: pivot2.id, flag: false, positionz: -(Math.PI/8), compteur: 0},
+			{id: pivot3.id, flag: false, positionz: (Math.PI/7), compteur: 0},
+			{id: pivot4.id, flag: false, positionz: -(Math.PI/7), compteur: 0}
+			
+		],		
+		[
+			{id: pivot1.id, flag: false, positionz: 0, compteur: 0},
+			{id: pivot2.id, flag: false, positionz: 0, compteur: 0},
+			{id: pivot3.id, flag: false, positionz: 0, compteur: 0},
+			{id: pivot4.id, flag: false, positionz: 0, compteur: 0}
 			
 		]
 	];
@@ -361,11 +368,7 @@ $(document).ready(function(){
 					compteurAnim = lim2;
 
 				}
-				
 			}
-			
-			
-			
 		}
 
 		
@@ -483,6 +486,12 @@ $(document).ready(function(){
 		
 		vaEtVient(pivot4, (Math.PI/8), 0, "x", vitesseAnim, animationX);
 		vaEtVient(pivot4, -(Math.PI/7), 0, "z", vitesseAnim, animationZ);*/
+		
+	}
+	
+	function animCoucou3(v){
+		
+		
 		
 	}
 	
@@ -632,6 +641,37 @@ $(document).ready(function(){
 	document.addEventListener("click", funcDansLaZone, false);
 	//document.addEventListener("touchstart", funcDansLaZone, false);
 	document.addEventListener( 'mousemove', onMouseMove, false );
+	
+	document.getElementById("btncouin").addEventListener('click', function(){
+		
+		var nbrClics = 0;
+		
+		if(nbrClics===0){
+			
+			for(var i=1; i<3; i++){
+
+				for(var j=0; j<flagsPivots[i].length; j++){
+
+					flagsPivots[i][j].flag = true;
+
+				}
+			}
+			
+			nbrClics++;
+			
+		}else if(nbrClics===1){
+			
+			var i2 = 3;
+			
+			for(var j2=0; j2<flagsPivots[i2].length; j2++){
+
+				flagsPivots[i2][j2].flag = true;
+
+			}			
+		}
+				
+		
+	});
 	
 	
 	
