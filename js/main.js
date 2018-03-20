@@ -198,14 +198,15 @@ $(document).ready(function(){
 	
 	//Fonction pour convertir le nom de l'objet en chiffre
 	
-	function trouverIndex(a){
+	function trouverIndex(a, t){
 		
 		var id = a.id;
+		var tableau = t;
 		var index = 0;
 		
-		for(var i = 0; i<flagsPivots.length; i++){
+		for(var i = 0; i<tableau.length; i++){
 			
-			if (id === flagsPivots[i].id ){
+			if (id === tableau[i].id ){
 				
 				index = i;
 				
@@ -256,16 +257,26 @@ $(document).ready(function(){
 	
 	var flagsPivots = [
 		
-		{id: pivot1.id, flag: true, compteur: 0},
-		{id: pivot2.id, flag: true, compteur: 0},
-		{id: pivot3.id, flag: true, compteur: 0},
-		{id: pivot4.id, flag: true, compteur: 0}	
+		[
+			{id: pivot1.id, flag: true, compteur: 0},
+			{id: pivot2.id, flag: true, compteur: 0},
+			{id: pivot3.id, flag: true, compteur: 0},
+			{id: pivot4.id, flag: true, compteur: 0}
+			
+		],		
+		[
+			{id: pivot1.id, flag: true, positionx: -(Math.PI/8)},
+			{id: pivot2.id, flag: true, positionx: (Math.PI/7)},
+			{id: pivot3.id, flag: true, positionx: -(Math.PI/8)},
+			{id: pivot4.id, flag: true, positionx: (Math.PI/8)}
+			
+		]		
 		
 	];
 	
 
 		
-	function vaEtVient(a, b, c, d, v){
+	function vaEtVient(a, b, c, d, v, anim){
 		
 		var obj = a;
 		var plus = v;
@@ -273,10 +284,13 @@ $(document).ready(function(){
 		var axe = d;
 		var lim1 = b;
 		var lim2 = c;
+		var tableFlags = flagsPivots[anim];
+		console.log(tableFlags);
+		console.log(trouverIndex(obj, tableFlags));
 		
 		// à faire!!!
-		var flagAnim = flagsPivots[trouverIndex(obj)].flag;
-		var compteurAnim = flagsPivots[trouverIndex(obj)].compteur;
+		var flagAnim = tableFlags[trouverIndex(obj, tableFlags)].flag;
+		var compteurAnim = tableFlags[trouverIndex(obj, tableFlags)].compteur;
 		
 		
 		if(lim1>lim2){
@@ -349,19 +363,76 @@ $(document).ready(function(){
 		}
 
 		
-		flagsPivots[trouverIndex(obj)].flag = flagAnim;
-		flagsPivots[trouverIndex(obj)].compteur = compteurAnim;
+		tableFlags[trouverIndex(obj, tableFlags)].flag = flagAnim;
+		tableFlags[trouverIndex(obj, tableFlags)].compteur = compteurAnim;
 		
 	}
+	
+	function animSansLoop(objet, axe1, axe2, vitesse, anim){
+		
+		var tableFlags = flagsPivots[anim];
+		var flagAnim = tableFlags[trouverIndex(obj, tableFlags)].flag;
+		var repere;
+		
+		
+		if(axe1==="x"){
+			
+			repere = tableFlags[trouverIndex(objet, tableFlags)].positionx;
+			
+		}else if(axe1==="y"){
+			
+			repere = tableFlags[trouverIndex(objet, tableFlags)].positiony;
+			
+		}else if(axe1==="z"){
+			
+			repere = tableFlags[trouverIndex(objet, tableFlags)].positionz;
+			
+		}
+		
+		
+		if(axerepere>0){
+			
+			rotation(objet, axe1, "plus", vitesse);
+			
+		}
+		
+		
+		
+		
+	}
+	
+	
+	
 	
 	function animCoucou1(v){
 		
 		var vitesseAnim = v;
+		var animation = 0;
 		
-		vaEtVient(pivot1, 0.5, 0, "z", vitesseAnim);
-		vaEtVient(pivot2, -0.5, 0, "z", vitesseAnim);
-		vaEtVient(pivot3, -0.5, 0, "x", vitesseAnim);
-		vaEtVient(pivot4, 0.5, 0, "x", vitesseAnim);
+		vaEtVient(pivot1, 0.5, 0, "z", vitesseAnim, animation);
+		vaEtVient(pivot2, -0.5, 0, "z", vitesseAnim, animation);
+		vaEtVient(pivot3, -0.5, 0, "x", vitesseAnim, animation);
+		vaEtVient(pivot4, 0.5, 0, "x", vitesseAnim, animation);
+		
+	}
+	
+	function animCoucou2(v){
+		
+		var vitesseAnim = v;
+		var animationX = 1;
+		var animationZ = 2;
+		
+/*		vaEtVient(pivot1, -(Math.PI/8), 0, "x", vitesseAnim, animationX);
+		vaEtVient(pivot1, (Math.PI/7), 0, "z", vitesseAnim, animationZ);
+		
+		vaEtVient(pivot2, (Math.PI/7), 0, "x", vitesseAnim, animationX);
+		vaEtVient(pivot2, -(Math.PI/8), 0, "z", vitesseAnim, animationZ);
+		
+		vaEtVient(pivot3, -(Math.PI/8), 0, "x", vitesseAnim, animationX);
+		vaEtVient(pivot3, (Math.PI/7), 0, "z", vitesseAnim, animationZ);
+		
+		vaEtVient(pivot4, (Math.PI/8), 0, "x", vitesseAnim, animationX);
+		vaEtVient(pivot4, -(Math.PI/7), 0, "z", vitesseAnim, animationZ);*/
 		
 	}
 	
@@ -464,6 +535,7 @@ $(document).ready(function(){
 		requestAnimationFrame(animate);
 		
 		//animCoucou1(0.009);
+		animCoucou2(0.009);
 		
 		
 		// update the picking ray with the camera and mouse position
