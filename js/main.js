@@ -13,16 +13,12 @@ $(document).ready(function(){
 	var renderer = new THREE.WebGLRenderer();
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	divCouincouin.appendChild(renderer.domElement);
-	
-	//document.body.appendChild( renderer.domElement );
-	//$("canvas").wrap("<div></div");
-	//$("canvas").parent().attr("id", "couincouin");
+
 	
 	//Scene
 	var scene = new THREE.Scene();
 	var couleurBG = new THREE.Color( 0xffffff );
 	scene.background = couleurBG;
-	console.log(scene);
 	
 	
 	//		LUMIIÈRE
@@ -101,10 +97,10 @@ $(document).ready(function(){
 	
 	
 	//Couleurs
-	var color1 = new THREE.MeshStandardMaterial({color: 0xff0000, metalness: 1});
-	var color2 = new THREE.MeshStandardMaterial({color: 0x4B11C5, metalness: 1});
-	var color3 = new THREE.MeshStandardMaterial({color: 0x17830B, metalness: 1});
-	var color4 = new THREE.MeshStandardMaterial({color: 0xCCE41D, metalness: 1});
+	var color1 = new THREE.MeshStandardMaterial({color: 0xff0000, metalness: 1, emissive: 0x575757});
+	var color2 = new THREE.MeshStandardMaterial({color: 0x4B11C5, metalness: 1, emissive: 0x575757});
+	var color3 = new THREE.MeshStandardMaterial({color: 0x17830B, metalness: 1, emissive: 0x575757});
+	var color4 = new THREE.MeshStandardMaterial({color: 0xCCE41D, metalness: 1, emissive: 0x575757});
 	
 	
 	
@@ -357,6 +353,20 @@ $(document).ready(function(){
 		flagsPivots[trouverIndex(obj)].compteur = compteurAnim;
 		
 	}
+	
+	function animCoucou1(v){
+		
+		var vitesseAnim = v;
+		
+		vaEtVient(pivot1, 0.5, 0, "z", vitesseAnim);
+		vaEtVient(pivot2, -0.5, 0, "z", vitesseAnim);
+		vaEtVient(pivot3, -0.5, 0, "x", vitesseAnim);
+		vaEtVient(pivot4, 0.5, 0, "x", vitesseAnim);
+		
+	}
+	
+	
+
 
 	
 	
@@ -390,7 +400,7 @@ $(document).ready(function(){
 		
 		if((identifierLien(idObjetTouche, faceTouchee)===null)===false){
 			
-			$('#modalTest .modal-content').html("Bienvenue sur la page " + identifierLien(idObjetTouche, faceTouchee));
+			$('#modalTest .modal-body').html("Bienvenue sur la page " + identifierLien(idObjetTouche, faceTouchee));
 			$('#modalTest').modal('toggle');
 			
 		}
@@ -453,12 +463,8 @@ $(document).ready(function(){
 		
 		requestAnimationFrame(animate);
 		
-/*		var vitesseAnim = 0.009;
+		//animCoucou1(0.009);
 		
-		vaEtVient(pivot1, 0.5, 0, "z", vitesseAnim);
-		vaEtVient(pivot2, -0.5, 0, "z", vitesseAnim);
-		vaEtVient(pivot3, -0.5, 0, "x", vitesseAnim);
-		vaEtVient(pivot4, 0.5, 0, "x", vitesseAnim);*/
 		
 		// update the picking ray with the camera and mouse position
 		raycaster.setFromCamera( mouse, camera );
