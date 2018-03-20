@@ -41,6 +41,7 @@ $(document).ready(function(){
 	var faceTouchee;
 	var nbrClics = 0;
 	var flagAnimationCouinCouin = false;
+	var premiersClics = 0;
 	
 	//----La position x du pivot1
 	var reperesAnim = [-(Math.PI/8), (Math.PI/8)];
@@ -85,10 +86,10 @@ $(document).ready(function(){
 	
 	//CONTROLS
 	
-/*	var controls = new THREE.OrbitControls( camera );
+	var controls = new THREE.OrbitControls( camera );
 	
 	//controls.update() must be called after any manual changes to the camera's transform
-	controls.update();*/
+	controls.update();
 	
 	
 	
@@ -438,7 +439,22 @@ $(document).ready(function(){
 	
 	document.getElementById("btncouin").addEventListener('click', function(){
 		
-		flagAnimationCouinCouin = true;				
+		flagAnimationCouinCouin = true;
+		
+		console.log(premiersClics);
+		
+		if(premiersClics===0){
+			
+			$("#btncouin").html("Cliquez encore!");
+			premiersClics++;
+			
+		}else if(nbrClics>=1){
+			
+			$("#btncouin").html("Allez-y, encore!");
+			
+		}
+		
+				
 		
 	});
 	
