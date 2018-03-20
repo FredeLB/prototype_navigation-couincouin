@@ -47,7 +47,10 @@
 	
 	//JAUNE
 	pivot4.rotation.x = (Math.PI/8);		
-	pivot4.rotation.z = (Math.PI/7);*/		
+	pivot4.rotation.z = (Math.PI/7);*/
+
+
+//À TESTER: TOFIXED PARTOUT!!		
 	
 	
 	

@@ -40,7 +40,10 @@ $(document).ready(function(){
 	var idObjetTouche;
 	var faceTouchee;
 	var nbrClics = 0;
-	var flagZero = false;
+	var flagAnimationCouinCouin = false;
+	
+	//----La position x du pivot1
+	var reperesAnim = [-(Math.PI/8), (Math.PI/8)];
 	
 	
 	var facesInteractives = [
@@ -147,57 +150,7 @@ $(document).ready(function(){
 	
 	
 	
-	
-	
-	//Position couincouin fermé!
-/*	pivot1.rotation.z = (Math.PI/4).toFixed(3);
-	pivot2.rotation.z = -(Math.PI/4).toFixed(3);
-	pivot3.rotation.x = -(Math.PI/4).toFixed(3);
-	pivot4.rotation.x = (Math.PI/4).toFixed(3);	*/
-	
-	
-	
-	
-	//Position couincouin fermé à moitié 1
-	
-/*	//ROUGE
-	pivot1.rotation.x = -(Math.PI/8);
-	pivot1.rotation.z = (Math.PI/7);
-	
-	//BLEU
-	pivot2.rotation.x = (Math.PI/7);
-	pivot2.rotation.z = -(Math.PI/8);
-	
-	//VERT
-	pivot3.rotation.x = -(Math.PI/8);
-	pivot3.rotation.z = (Math.PI/7);
-	
-	//JAUNE
-	pivot4.rotation.x = (Math.PI/8);		
-	pivot4.rotation.z = -(Math.PI/7);	*/
-	
-	
-	
-	//Position couincouin fermé à moitié 2
-	
-/*	//ROUGE
-	pivot1.rotation.x = (Math.PI/8);
-	pivot1.rotation.z = (Math.PI/7);
-	
-	//BLEU
-	pivot2.rotation.x = -(Math.PI/7);
-	pivot2.rotation.z = -(Math.PI/8);
-	
-	//VERT
-	pivot3.rotation.x = -(Math.PI/8);
-	pivot3.rotation.z = -(Math.PI/7);
-	
-	//JAUNE
-	pivot4.rotation.x = (Math.PI/8);		
-	pivot4.rotation.z = (Math.PI/7);*/		
-	
-	
-	
+
 	
 	//Fonction pour convertir le nom de l'objet en chiffre
 	
@@ -221,308 +174,7 @@ $(document).ready(function(){
 		
 	}
 	
-	
-	
-	
-	function rotation(a, b, c, v){
-		
-		var sens;
-		
-		if(c === "moins"){
-			
-			sens = -(v);
-			
-		}else{
-			
-			sens = v;	
-		}
-		
-		if(b === "x"){
-			
-			a.rotation.x += sens;
-			
-		}else if(b === "y"){
-			
-			a.rotation.y += sens;
-			
-		}else if(b === "z"){
-			
-			a.rotation.z += sens; 
-			
-		}
-		
-	}
-	
-	
-	
-	
-	//Animation en loop!!!
-	
-	var flagsPivots = [
-		
-		// Pour vaEtVient
-		[
-			{id: pivot1.id, flag: true, compteur: 0},
-			{id: pivot2.id, flag: true, compteur: 0},
-			{id: pivot3.id, flag: true, compteur: 0},
-			{id: pivot4.id, flag: true, compteur: 0}
-			
-		],	
-		
-		// Pour AnimCoucou1
-		
-		[
-			{id: pivot1.id, flag: false, positionx: -(Math.PI/8), compteur: 0},
-			{id: pivot2.id, flag: false, positionx: (Math.PI/7), compteur: 0},
-			{id: pivot3.id, flag: false, positionx: -(Math.PI/8), compteur: 0},
-			{id: pivot4.id, flag: false, positionx: (Math.PI/8), compteur: 0}
-			
-		],		
-		[
-			{id: pivot1.id, flag: false, positionz: (Math.PI/7), compteur: 0},
-			{id: pivot2.id, flag: false, positionz: -(Math.PI/8), compteur: 0},
-			{id: pivot3.id, flag: false, positionz: (Math.PI/7), compteur: 0},
-			{id: pivot4.id, flag: false, positionz: -(Math.PI/7), compteur: 0}
-			
-		]
-	];
-	
 
-		
-	function vaEtVient(a, b, c, d, v, anim){
-		
-		var obj = a;
-		var plus = v;
-		var moins = -(v);
-		var axe = d;
-		var lim1 = b;
-		var lim2 = c;
-		var tableFlags = flagsPivots[anim];
-		//console.log(tableFlags);
-		//console.log(trouverIndex(obj, tableFlags));
-		
-		// à faire!!!
-		var flagAnim = tableFlags[trouverIndex(obj, tableFlags)].flag;
-		var compteurAnim = tableFlags[trouverIndex(obj, tableFlags)].compteur;
-		
-		
-		if(lim1>lim2){
-			
-			if(flagAnim === true){
-
-				if(compteurAnim < lim1){
-
-					compteurAnim += plus; 
-					rotation(obj, axe, "plus", v);
-
-				}else if(compteurAnim > lim1){
-
-					flagAnim = false;
-					compteurAnim = lim1;
-
-				}
-
-			}else{
-
-				if(compteurAnim > lim2){
-
-					compteurAnim += moins; 
-					rotation(obj, axe, "moins", v);
-
-				}else if(compteurAnim < lim2){
-
-					flagAnim = true;
-					compteurAnim = lim2;
-
-				}
-				
-			}
-			
-		}else{
-			
-			
-			if(flagAnim === true){
-
-				if(compteurAnim > lim1){
-
-					compteurAnim += moins; 
-					rotation(obj, axe, "moins", v);
-
-				}else if(compteurAnim < lim1){
-
-					flagAnim = false;
-					compteurAnim = lim1;
-
-				}
-
-			}else{
-
-				if(compteurAnim < lim2){
-
-					compteurAnim += plus; 
-					rotation(obj, axe, "plus", v);
-
-				}else if(compteurAnim > lim2){
-
-					flagAnim = true;
-					compteurAnim = lim2;
-
-				}
-			}
-		}
-
-		
-		tableFlags[trouverIndex(obj, tableFlags)].flag = flagAnim;
-		tableFlags[trouverIndex(obj, tableFlags)].compteur = compteurAnim;
-		
-	}
-	
-	function animSansLoop(objet, axe, vitesse, anim){
-		
-		var tableFlags = flagsPivots[anim];
-		var flagAnim = tableFlags[trouverIndex(objet, tableFlags)].flag;
-		var compteurAnim = tableFlags[trouverIndex(objet, tableFlags)].compteur;
-		var limite;
-		
-		
-		if(axe==="x"){
-			
-			limite = tableFlags[trouverIndex(objet, tableFlags)].positionx;
-			
-		}else if(axe==="y"){
-			
-			limite = tableFlags[trouverIndex(objet, tableFlags)].positiony;
-			
-		}else if(axe==="z"){
-			
-			limite = tableFlags[trouverIndex(objet, tableFlags)].positionz;
-			
-		}
-		
-		
-		
-		if(flagAnim===true){
-			
-			if(limite>0){
-
-				compteurAnim+=vitesse;
-
-				if(compteurAnim<limite){
-
-					rotation(objet, axe, "plus", vitesse);
-
-				}else{
-
-					flagAnim = false;
-					//console.log(compteurAnim);
-
-				}
-			}else{
-				
-				compteurAnim-=vitesse;
-
-				if(compteurAnim>limite){
-
-					rotation(objet, axe, "moins", vitesse);
-
-				}else{
-
-					flagAnim = false;
-					//console.log(compteurAnim);
-
-				}
-				
-			}
-		}
-		
-		tableFlags[trouverIndex(objet, tableFlags)].flag = flagAnim;
-		tableFlags[trouverIndex(objet, tableFlags)].compteur = compteurAnim;
-		
-		
-		
-	}
-	
-	
-	
-	
-	function animCoucou1(v){
-		
-		var vitesseAnim = v;
-		var animation = 0;
-		
-		vaEtVient(pivot1, 0.5, 0, "z", vitesseAnim, animation);
-		vaEtVient(pivot2, -0.5, 0, "z", vitesseAnim, animation);
-		vaEtVient(pivot3, -0.5, 0, "x", vitesseAnim, animation);
-		vaEtVient(pivot4, 0.5, 0, "x", vitesseAnim, animation);
-		
-	}
-	
-	function animCoucou2(v){
-		
-		var vitesseAnim = v;
-		var animationX = 1;
-		var animationZ = 2;
-		
-		animSansLoop(pivot1, "x", vitesseAnim, animationX);
-		animSansLoop(pivot1, "z", vitesseAnim, animationZ);
-		
-		animSansLoop(pivot2, "x", vitesseAnim, animationX);
-		animSansLoop(pivot2, "z", vitesseAnim, animationZ);
-		
-		animSansLoop(pivot3, "x", vitesseAnim, animationX);
-		animSansLoop(pivot3, "z", vitesseAnim, animationZ);
-		
-		animSansLoop(pivot4, "x", vitesseAnim, animationX);
-		animSansLoop(pivot4, "z", vitesseAnim, animationZ);
-		
-	}
-	
-	function animCoucouZero(v){
-		
-		if(flagZero===true){
-			
-			pivot1.rotation.x += v;
-			pivot1.rotation.z -= v;
-			
-			pivot2.rotation.x -= v;
-			pivot2.rotation.z += v;
-			
-			pivot3.rotation.x += v;
-			pivot3.rotation.z -= v;
-			
-			pivot4.rotation.x -= v;
-			pivot4.rotation.z += v;
-			
-			
-			
-			if(pivot1.rotation.x>=0){
-				
-				pivot1.rotation.x = 0;
-				pivot1.rotation.z = 0;
-				
-				pivot2.rotation.x = 0;
-				pivot2.rotation.z = 0;
-				
-				pivot3.rotation.x = 0;
-				pivot3.rotation.z = 0;
-				
-				pivot4.rotation.x = 0;
-				pivot4.rotation.z = 0;
-				
-				
-				flagZero = false;
-				
-			}
-		}
-	}
-	
-	
-	
-
-
-	
-	
-	
 	
 	
 	//Pour s'adapter quand la fenêtre rapetisse/s'aggrandit
@@ -600,10 +252,130 @@ $(document).ready(function(){
 	}
 	
 	
+	function setPosition1(){
+		
+		//ROUGE
+		pivot1.rotation.x = -(Math.PI/8);
+		pivot1.rotation.z = (Math.PI/7);
+
+		//BLEU
+		pivot2.rotation.x = (Math.PI/7);
+		pivot2.rotation.z = -(Math.PI/8);
+
+		//VERT
+		pivot3.rotation.x = -(Math.PI/8);
+		pivot3.rotation.z = (Math.PI/7);
+
+		//JAUNE
+		pivot4.rotation.x = (Math.PI/8);		
+		pivot4.rotation.z = -(Math.PI/7);
+		
+	}
+	
+	function setPosition2(){
+		
+		//ROUGE
+		pivot1.rotation.x = (Math.PI/8);
+		pivot1.rotation.z = (Math.PI/7);
+
+		//BLEU
+		pivot2.rotation.x = -(Math.PI/7);
+		pivot2.rotation.z = -(Math.PI/8);
+
+		//VERT
+		pivot3.rotation.x = -(Math.PI/8);
+		pivot3.rotation.z = -(Math.PI/7);
+
+		//JAUNE
+		pivot4.rotation.x = (Math.PI/8);		
+		pivot4.rotation.z = (Math.PI/7);		
+		
+	}
+	
+	
 	
 
-
+	function animCouicouin(v){
+		
+		if(flagAnimationCouinCouin===true){
+			
+			//De position 0 à 1
+			
+			if(nbrClics===0){
+				
+				pivot1.rotation.x -= v;
+				pivot1.rotation.z += v;
+				
+				pivot2.rotation.x += v;
+				pivot2.rotation.z -= v;
+				
+				pivot3.rotation.x -= v;
+				pivot3.rotation.z += v;
+				
+				pivot4.rotation.x += v;
+				pivot4.rotation.z -= v;
+				
+				
+				if(pivot1.rotation.x <= reperesAnim[0]){
+					
+					nbrClics++;
+					setPosition1();
+					flagAnimationCouinCouin = false;
+					
+				}
+				
+			}else if(nbrClics===1){
+				
+				pivot1.rotation.x += v;
+				//pivot1.rotation.z -= v;
+				
+				pivot2.rotation.x -= v;
+				//pivot2.rotation.z -= v;
+				
+				//pivot3.rotation.x -= v;
+				pivot3.rotation.z -= v;
+				
+				//pivot4.rotation.x += v;
+				pivot4.rotation.z += v;
+				
+				
+				if(pivot1.rotation.x >= reperesAnim[1]){
+					
+					nbrClics++;
+					setPosition2();
+					flagAnimationCouinCouin = false;
+					
+				}		
+				
+			}else if(nbrClics===2){
+				
+				pivot1.rotation.x -= v;
+				//pivot1.rotation.z -= v;
+				
+				pivot2.rotation.x += v;
+				//pivot2.rotation.z -= v;
+				
+				//pivot3.rotation.x -= v;
+				pivot3.rotation.z += v;
+				
+				//pivot4.rotation.x += v;
+				pivot4.rotation.z -= v;
+				
+				
+				if(pivot1.rotation.x <= reperesAnim[0]){
+					
+					nbrClics--;
+					setPosition1();
+					flagAnimationCouinCouin = false;
+					
+				}		
+				
+			}
+		}	
+	}
 	
+	
+
 	
 	
 //""""""""""""""""""""""""""""""" LOOP DE RENDU """""""""""""""""""""""""""""""""""""""
@@ -615,9 +387,8 @@ $(document).ready(function(){
 		
 		requestAnimationFrame(animate);
 		
-		//animCoucou1(0.009);
-		animCoucou2(0.009);
-		animCoucouZero(0.009);
+		animCouicouin(0.09);
+		
 		
 		
 		// update the picking ray with the camera and mouse position
@@ -667,30 +438,7 @@ $(document).ready(function(){
 	
 	document.getElementById("btncouin").addEventListener('click', function(){
 		
-		
-		if(nbrClics===0){
-			
-			for(var i=1; i<3; i++){
-
-				for(var j=0; j<flagsPivots[i].length; j++){
-					
-					flagsPivots[i][j].compteur = 0;
-					flagsPivots[i][j].flag = true;
-
-				}
-			}
-			
-			nbrClics++;
-			
-		}else if(nbrClics===1){
-			
-			flagZero = true;
-			nbrClics++;
-		
-		}
-		
-		console.log(nbrClics);
-				
+		flagAnimationCouinCouin = true;				
 		
 	});
 	
