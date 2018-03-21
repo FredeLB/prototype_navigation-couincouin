@@ -42,6 +42,7 @@ $(document).ready(function(){
 	var nbrClics = 0;
 	var flagAnimationCouinCouin = false;
 	var premiersClics = 0;
+	var flagInteractivite = false;
 	
 	//----La position x du pivot1
 	var reperesAnim = [-(Math.PI/8), (Math.PI/8)];
@@ -49,21 +50,28 @@ $(document).ready(function(){
 	
 	var facesInteractives = [
 		
+		//	P1 - À propos
 		[
-			{obj: 9, face: 9}, 
-			{obj: 11, face: 21}
+			{obj: 12, face: 9}, 
+			{obj: 11, face: 9}
 		],
+		
+		//	P2 - COMPÉTENCES
 		[
-			{obj: 8, face: 21}, 
-			{obj: 10, face: 9}
+			{obj: 10, face: 21}, 
+			{obj: 13, face: 21}
 		],
-		[
-			{obj: 10, face: 12}, 
-			{obj: 9, face: 0}
-		],
+		
+		//	P3 - PROJETS
 		[
 			{obj: 11, face: 0}, 
-			{obj: 8, face: 12}
+			{obj: 13, face: 0}
+		],
+		
+		//	P4 - Contact
+		[
+			{obj: 10, face: 12}, 
+			{obj: 12, face: 12}
 		]
 		
 	];
@@ -76,10 +84,10 @@ $(document).ready(function(){
 	
 	//Aide pour les axes: x=rouge y=vert z=bleu
 	//Caméra
-	var camera = new THREE.PerspectiveCamera( 20, window.innerWidth / window.innerHeight, 1, 1000 );
+	var camera = new THREE.PerspectiveCamera( 15, window.innerWidth / window.innerHeight, 1, 1000 );
 	camera.position.x = 20;
 	camera.position.y = 15;
-	camera.position.z = 15;
+	camera.position.z = 10;
 	camera.lookAt(scene.position);
 	
 	
@@ -87,9 +95,11 @@ $(document).ready(function(){
 	//CONTROLS
 	
 	var controls = new THREE.OrbitControls( camera );
+	controls.enableZoom = false;
+	//controls.autoRotate = true;
+	controls.maxPolarAngle = Math.PI/3;
+	controls.rotateSpeed = 0.4;
 	
-	//controls.update() must be called after any manual changes to the camera's transform
-	controls.update();
 	
 	
 	
@@ -104,10 +114,10 @@ $(document).ready(function(){
 	
 	
 	//Couleurs
-	var color1 = new THREE.MeshStandardMaterial({color: 0xff0000, metalness: 1, emissive: 0x575757});
-	var color2 = new THREE.MeshStandardMaterial({color: 0x4B11C5, metalness: 1, emissive: 0x575757});
-	var color3 = new THREE.MeshStandardMaterial({color: 0x17830B, metalness: 1, emissive: 0x575757});
-	var color4 = new THREE.MeshStandardMaterial({color: 0xCCE41D, metalness: 1, emissive: 0x575757});
+	var color1 = new THREE.MeshStandardMaterial({color: 0x745116, metalness: 1, emissive: 0x3B342B});
+	var color2 = new THREE.MeshStandardMaterial({color: 0x745116, metalness: 1, emissive: 0x3B342B});
+	var color3 = new THREE.MeshStandardMaterial({color: 0x745116, metalness: 1, emissive: 0x3B342B});
+	var color4 = new THREE.MeshStandardMaterial({color: 0x745116, metalness: 1, emissive: 0x3B342B});
 	
 	
 	
@@ -196,20 +206,25 @@ $(document).ready(function(){
 	
 	function funcDansLaZone(event){
 		
-		//console.log(event);
-		//console.log(danslazone);
-		//console.log("Id de l'objet: " + idObjetTouche);
-		//console.log("Face touchée: " + faceTouchee);
-		//console.log("Lien cliqué = " + identifierLien(idObjetTouche, faceTouchee));
-
+		if(flagInteractivite===true){
 		
-		if((identifierLien(idObjetTouche, faceTouchee)===null)===false){
-			
-			$('#modalTest .modal-body').html("Bienvenue sur la page " + identifierLien(idObjetTouche, faceTouchee));
-			$('#modalTest').modal('toggle');
-			
+			console.log(event);
+			//console.log(danslazone);
+			console.log("Id de l'objet: " + idObjetTouche);
+			console.log("Face touchée: " + faceTouchee);
+			console.log("Lien cliqué = " + identifierLien(idObjetTouche, faceTouchee));
+
+
+
+			if((identifierLien(idObjetTouche, faceTouchee)===null)===false){
+
+				$('#modalTest .modal-body').html("Bienvenue sur la page " + identifierLien(idObjetTouche, faceTouchee));
+				$('#modalTest').modal('toggle');
+
+			}
 		}
 	}
+	
 	
 	function onMouseMove(event){
 		
@@ -388,6 +403,10 @@ $(document).ready(function(){
 		
 		requestAnimationFrame(animate);
 		
+		//controls.update() must be called after any manual changes to the camera's transform
+		controls.update();
+		
+		
 		animCouicouin(0.09);
 		
 		
@@ -405,6 +424,7 @@ $(document).ready(function(){
 			var intersect = intersects[0];
 			faceTouchee = intersect.faceIndex;
 			idObjetTouche = intersect.object.id;
+			
 						
 		}else{
 			
@@ -447,6 +467,7 @@ $(document).ready(function(){
 			
 			$("#btncouin").html("Cliquez encore!");
 			premiersClics++;
+			flagInteractivite = true;
 			
 		}else if(nbrClics>=1){
 			
