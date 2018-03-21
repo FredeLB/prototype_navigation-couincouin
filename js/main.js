@@ -19,6 +19,7 @@ $(document).ready(function(){
 	var scene = new THREE.Scene();
 	var couleurBG = new THREE.Color( 0xffffff );
 	scene.background = couleurBG;
+	//scene.fog = new THREE.Fog( 0x000000, 1 );
 	
 	
 	//		LUMIIÈRE
@@ -50,28 +51,28 @@ $(document).ready(function(){
 	
 	var facesInteractives = [
 		
-		//	P1 - À propos
+		//	P0 - À propos
 		[
-			{obj: "octa1", face: 21}, 
-			{obj: "octa3", face: 9}
+			{obj: "octa1", face: 7}, 
+			{obj: "octa3", face: 3}
 		],
 		
-		//	P2 - COMPÉTENCES
+		//	P1 - COMPÉTENCES
 		[
-			{obj: "octa2", face: 9}, 
-			{obj: "octa4", face: 21}
+			{obj: "octa2", face: 3}, 
+			{obj: "octa4", face: 7}
 		],
 		
-		//	P3 - PROJETS
+		//	P2 - PROJETS
 		[
 			{obj: "octa2", face: 0}, 
-			{obj: "octa3", face: 12}
+			{obj: "octa3", face: 4}
 		],
 		
-		//	P4 - Contact
+		//	P3 - Contact
 		[
 			{obj: "octa4", face: 0}, 
-			{obj: "octa1", face: 12}
+			{obj: "octa1", face: 4}
 		]
 		
 	];
@@ -108,7 +109,7 @@ $(document).ready(function(){
 	//Créer mon efhweihrggone (octaèdre)
 	
 	//Créer l'objet de base
-	var octahedron = new THREE.OctahedronBufferGeometry();
+	var octahedron = new THREE.OctahedronGeometry();
 
 	
 	var couleurMesh = 0x36302A;
@@ -161,6 +162,8 @@ $(document).ready(function(){
 	scene.add( pivot2 );
 	scene.add( pivot3 );
 	scene.add( pivot4 );
+	
+	
 	
 	
 	
@@ -445,10 +448,17 @@ $(document).ready(function(){
 							
 			var intersect = intersects[0];
 			faceTouchee = intersect.faceIndex;
+			var objetTouche = intersect.object;
 			idObjetTouche = intersect.object.name;
+			
+			
+			//	TEST
+			console.log(idObjetTouche);
+			console.log(faceTouchee);
 			
 						
 		}else{
+
 			
 			faceTouchee = null;
 			idObjetTouche = null;
