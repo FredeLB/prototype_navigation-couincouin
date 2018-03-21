@@ -38,7 +38,7 @@ $(document).ready(function(){
 	var mouse = new THREE.Vector2();
 	var raycaster = new THREE.Raycaster();
 	var danslazone = false;
-	var idObjetTouche;
+	var nomObjetTouche;
 	var faceTouchee;
 	var nbrClics = 0;
 	var flagAnimationCouinCouin = false;
@@ -110,23 +110,34 @@ $(document).ready(function(){
 	
 	//Créer l'objet de base
 	var octahedron = new THREE.OctahedronGeometry();
+	
+	for ( var i = 0, l = octahedron.faces.length; i < l; i ++ ) {
+
+		var face = octahedron.faces[ i ];
+		face.materialIndex = i;
+
+	}
+	
+	octahedron.sortFacesByMaterialIndex();
 
 	
 	var couleurMesh = 0x36302A;
 	
-	//Couleurs
-	var color1 = new THREE.MeshStandardMaterial({color: couleurMesh, metalness: 1, emissive: 0x3B342B});
-	var color2 = new THREE.MeshStandardMaterial({color: couleurMesh, metalness: 1, emissive: 0x3B342B});
-	var color3 = new THREE.MeshStandardMaterial({color: couleurMesh, metalness: 1, emissive: 0x3B342B});
-	var color4 = new THREE.MeshStandardMaterial({color: couleurMesh, metalness: 1, emissive: 0x3B342B});
+	//MATERIALS
+	
+	var materials = [];
+	
+	
+	materials.push(new THREE.MeshStandardMaterial({color: couleurMesh, metalness: 1, emissive: 0x3B342B})); 
+	materials.push(new THREE.MeshBasicMaterial({color: 0xA31215})); 
 	
 	
 	
 	//Assigner couleurs
-	var octa1 = new THREE.Mesh( octahedron, color1 );
-	var octa2 = new THREE.Mesh( octahedron, color2 );
-	var octa3 = new THREE.Mesh( octahedron, color3 );
-	var octa4 = new THREE.Mesh( octahedron, color4 );
+	var octa1 = new THREE.Mesh( octahedron, materials[0] );
+	var octa2 = new THREE.Mesh( octahedron, materials[0] );
+	var octa3 = new THREE.Mesh( octahedron, materials[0] );
+	var octa4 = new THREE.Mesh( octahedron, materials[0] );
 	octa1.name = "octa1";
 	octa2.name = "octa2";
 	octa3.name = "octa3";
@@ -235,15 +246,15 @@ $(document).ready(function(){
 		
 		/*	console.log(event);
 			//console.log(danslazone);
-			console.log("Id de l'objet: " + idObjetTouche);
+			console.log("Id de l'objet: " + nomObjetTouche);
 			console.log("Face touchée: " + faceTouchee);
-			console.log("Lien cliqué = " + identifierLien(idObjetTouche, faceTouchee));*/
+			console.log("Lien cliqué = " + identifierLien(nomObjetTouche, faceTouchee));*/
 
 
 
-			if((identifierLien(idObjetTouche, faceTouchee)===null)===false){
+			if((identifierLien(nomObjetTouche, faceTouchee)===null)===false){
 
-				$('#modalTest .modal-body').html("Bienvenue sur la page " + identifierLien(idObjetTouche, faceTouchee));
+				$('#modalTest .modal-body').html("Bienvenue sur la page " + identifierLien(nomObjetTouche, faceTouchee));
 				$('#modalTest').modal('toggle');
 
 			}
@@ -449,19 +460,17 @@ $(document).ready(function(){
 			var intersect = intersects[0];
 			faceTouchee = intersect.faceIndex;
 			var objetTouche = intersect.object;
-			idObjetTouche = intersect.object.name;
-			
+			nomObjetTouche = intersect.object.name;
 			
 			//	TEST
-			console.log(idObjetTouche);
-			console.log(faceTouchee);
+	
 			
 						
 		}else{
 
 			
 			faceTouchee = null;
-			idObjetTouche = null;
+			nomObjetTouche = null;
 			
 		}
 		
