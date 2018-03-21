@@ -121,14 +121,14 @@ $(document).ready(function(){
 	octahedron.sortFacesByMaterialIndex();
 
 	
-	var couleurMesh = 0x36302A;
+	var couleurBase = 0x36302A;
 	
 	//MATERIALS
 	
 	var materials = [];
 	
 	
-	materials.push(new THREE.MeshStandardMaterial({color: couleurMesh, metalness: 1, emissive: 0x3B342B})); 
+	materials.push(new THREE.MeshStandardMaterial({color: couleurBase, metalness: 1, emissive: 0x3B342B})); 
 	materials.push(new THREE.MeshBasicMaterial({color: 0xA31215})); 
 	
 	
@@ -421,10 +421,76 @@ $(document).ready(function(){
 					flagAnimationCouinCouin = false;
 					
 				}		
-				
 			}
+			
+			changerMaterials();
 		}	
 	}
+	
+	
+	
+	function genererMaterials(faceIndex, t1, t2){
+		
+		var array = [];
+		
+		for(var i=0; i<octahedron.faces.length; i++){
+			
+			if(i===faceIndex){
+				
+				array.push(t2)
+				
+			}else{
+				
+				array.push(t1);
+				
+			}
+		}
+		
+		return array;
+	}
+	
+	function afficherFacesInters(page){
+		
+		var faces = facesInteractives[page];
+		
+		scene.getObjectByName(faces[0].obj).material = genererMaterials(faces[0].face, materials[0], materials[1]);
+		scene.getObjectByName(faces[1].obj).material = genererMaterials(faces[1].face, materials[0], materials[1]);
+		
+	}
+	
+	function resetMesh(){
+		
+		for(var i=0; i<0; i++){
+			
+			octa1.material = materials[0];
+			octa2.material = materials[0];
+			octa3.material = materials[0];
+			octa4.material = materials[0];
+			
+		}
+	}
+	
+
+	function changerMaterials(){
+		
+		resetMesh();
+		console.log("changerMaterials()");
+		
+		if(nbrClics===1){
+			
+			
+			afficherFacesInters(0);
+			afficherFacesInters(1);
+
+			
+		}else if(nbrClics===2){
+			
+			afficherFacesInters(2);
+			afficherFacesInters(3);
+			
+		}
+	}
+
 	
 	
 
@@ -463,6 +529,8 @@ $(document).ready(function(){
 			nomObjetTouche = intersect.object.name;
 			
 			//	TEST
+			
+	
 	
 			
 						
@@ -502,14 +570,14 @@ $(document).ready(function(){
 		
 		flagAnimationCouinCouin = true;
 		
-		console.log(premiersClics);
+		console.log(nbrClics);
 		
 		if(premiersClics===0){
-			
+						
 			$("#btncouin").html("Cliquez encore!");
 			premiersClics++;
 			flagInteractivite = true;
-			
+						
 		}else if(nbrClics>=1){
 			
 			$("#btncouin").html("Allez-y, encore!");
