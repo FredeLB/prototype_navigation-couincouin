@@ -176,7 +176,7 @@ $(document).ready(function(){
 	
 	
 	
-	
+	/*
 	
 	//	INDICATEURS LUMINEUX
 
@@ -216,7 +216,7 @@ $(document).ready(function(){
 	scene.add( lumierep3 );
 	
 	
-	
+	*/
 	
 	
 
