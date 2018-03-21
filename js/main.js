@@ -52,26 +52,26 @@ $(document).ready(function(){
 		
 		//	P1 - À propos
 		[
-			{obj: 12, face: 9}, 
-			{obj: 11, face: 9}
+			{obj: "octa1", face: 21}, 
+			{obj: "octa3", face: 9}
 		],
 		
 		//	P2 - COMPÉTENCES
 		[
-			{obj: 10, face: 21}, 
-			{obj: 13, face: 21}
+			{obj: "octa2", face: 9}, 
+			{obj: "octa4", face: 21}
 		],
 		
 		//	P3 - PROJETS
 		[
-			{obj: 11, face: 0}, 
-			{obj: 13, face: 0}
+			{obj: "octa2", face: 0}, 
+			{obj: "octa3", face: 12}
 		],
 		
 		//	P4 - Contact
 		[
-			{obj: 10, face: 12}, 
-			{obj: 12, face: 12}
+			{obj: "octa4", face: 0}, 
+			{obj: "octa1", face: 12}
 		]
 		
 	];
@@ -96,7 +96,7 @@ $(document).ready(function(){
 	
 	var controls = new THREE.OrbitControls( camera );
 	controls.enableZoom = false;
-	//controls.autoRotate = true;
+	controls.autoRotate = true;
 	controls.maxPolarAngle = Math.PI/3;
 	controls.rotateSpeed = 0.4;
 	
@@ -111,13 +111,13 @@ $(document).ready(function(){
 	var octahedron = new THREE.OctahedronBufferGeometry();
 
 	
-	
+	var couleurMesh = 0x36302A;
 	
 	//Couleurs
-	var color1 = new THREE.MeshStandardMaterial({color: 0x745116, metalness: 1, emissive: 0x3B342B});
-	var color2 = new THREE.MeshStandardMaterial({color: 0x745116, metalness: 1, emissive: 0x3B342B});
-	var color3 = new THREE.MeshStandardMaterial({color: 0x745116, metalness: 1, emissive: 0x3B342B});
-	var color4 = new THREE.MeshStandardMaterial({color: 0x745116, metalness: 1, emissive: 0x3B342B});
+	var color1 = new THREE.MeshStandardMaterial({color: couleurMesh, metalness: 1, emissive: 0x3B342B});
+	var color2 = new THREE.MeshStandardMaterial({color: couleurMesh, metalness: 1, emissive: 0x3B342B});
+	var color3 = new THREE.MeshStandardMaterial({color: couleurMesh, metalness: 1, emissive: 0x3B342B});
+	var color4 = new THREE.MeshStandardMaterial({color: couleurMesh, metalness: 1, emissive: 0x3B342B});
 	
 	
 	
@@ -126,7 +126,10 @@ $(document).ready(function(){
 	var octa2 = new THREE.Mesh( octahedron, color2 );
 	var octa3 = new THREE.Mesh( octahedron, color3 );
 	var octa4 = new THREE.Mesh( octahedron, color4 );
-	
+	octa1.name = "octa1";
+	octa2.name = "octa2";
+	octa3.name = "octa3";
+	octa4.name = "octa4";
 	
 	//Aide pour les axes: x=rouge y=vert z=bleu
 	//Positions
@@ -161,29 +164,48 @@ $(document).ready(function(){
 	
 	
 	
+	//	INDICATEURS LUMINEUX
 
 	
-	//Fonction pour convertir le nom de l'objet en chiffre
+	var sphere = new THREE.SphereGeometry( 0.05, 16, 8 );
+
+
+	var lumierep0 = new THREE.PointLight( 0x8F220E, 0.5, 1, 2);
+	lumierep0.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0x8F220E, transparent: true, opacity: 0.7  } ) ) );
+	lumierep0.position.x = 0.5;
+	lumierep0.position.y = 0.75;
+	lumierep0.position.z = 0.5;
+	scene.add( lumierep0 );
+
+
+	var lumierep1 = new THREE.PointLight( 0x00D7AB, 0.5, 1, 2);
+	lumierep1.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0x00D7AB, transparent: true, opacity: 0.7  } ) ) );
+	lumierep1.position.x = -0.5;
+	lumierep1.position.y = 0.75;
+	lumierep1.position.z = -0.5;
+	scene.add( lumierep1 );
+
+
+	var lumierep2 = new THREE.PointLight( 0xC5C40D, 0.5, 1, 2);
+	lumierep2.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0xC5C40D, transparent: true, opacity: 0.7  } ) ) );
+	lumierep2.position.x = -0.5;
+	lumierep2.position.y = 0.75;
+	lumierep2.position.z = 0.5;
+	scene.add( lumierep2 );
+
+
+	var lumierep3 = new THREE.PointLight( 0xC50CD0, 0.5, 1, 2);
+	lumierep3.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0xC50CD0, transparent: true, opacity: 0.7  } ) ) );
+	lumierep3.position.x = 0.5;
+	lumierep3.position.y = 0.75;
+	lumierep3.position.z = -0.5;
+	scene.add( lumierep3 );
 	
-	function trouverIndex(a, t){
-		
-		var id = a.id;
-		var tableau = t;
-		var index = 0;
-		
-		for(var i = 0; i<tableau.length; i++){
-			
-			if (id === tableau[i].id ){
-				
-				index = i;
-				
-			}	
-			
-		}
-		
-		return index;
-		
-	}
+	
+	
+	
+	
+
 	
 
 	
@@ -208,11 +230,11 @@ $(document).ready(function(){
 		
 		if(flagInteractivite===true){
 		
-			console.log(event);
+		/*	console.log(event);
 			//console.log(danslazone);
 			console.log("Id de l'objet: " + idObjetTouche);
 			console.log("Face touchée: " + faceTouchee);
-			console.log("Lien cliqué = " + identifierLien(idObjetTouche, faceTouchee));
+			console.log("Lien cliqué = " + identifierLien(idObjetTouche, faceTouchee));*/
 
 
 
@@ -423,7 +445,7 @@ $(document).ready(function(){
 							
 			var intersect = intersects[0];
 			faceTouchee = intersect.faceIndex;
-			idObjetTouche = intersect.object.id;
+			idObjetTouche = intersect.object.name;
 			
 						
 		}else{
@@ -488,11 +510,11 @@ $(document).ready(function(){
 /*	var axesScene = new THREE.AxesHelper( 6 );
 	//var axesOcta1 = new THREE.AxesHelper( 4 );
 	scene.add( axesScene );
-	//pivot1.add( axesOcta1 );*/
+	//pivot1.add( axesOcta1 );
 	
 	//	HELPER LUMIERE
 	
-/*	var sphereSize = 1;
+	var sphereSize = 1;
 	var pointLightHelper = new THREE.PointLightHelper( pointLight, sphereSize );
 	scene.add( pointLightHelper );*/
 	
