@@ -24,10 +24,18 @@ $(document).ready(function(){
 	
 	//		LUMIIÈRE
 
-	var pointLight = new THREE.PointLight( 0xffffff, 4, 50 );
-	pointLight.position.set( 1, 5, 1 );
+	var pointLight = new THREE.PointLight( 0xE9D09B, 3);
+	pointLight.position.set( 0, 4, 2 );
+	pointLight.decay = 10;
+	
+	
 	scene.add( pointLight );
+	
 
+	//	REPERES LUMIERES
+/*	var sphereSize = 1;
+	var pointLightHelper = new THREE.PointLightHelper( pointLight, sphereSize );
+	scene.add( pointLightHelper );*/
 	
 	
 	
@@ -121,15 +129,19 @@ $(document).ready(function(){
 	octahedron.sortFacesByMaterialIndex();
 
 	
-	var couleurBase = 0x36302A;
+	var couleurBase = 0x262020;
+	var couleurAlt1 = 0xA0B8BC;
+	var couleurAlt2 = 0xFF1F00;
+
 	
 	//MATERIALS
 	
 	var materials = [];
 	
 	
-	materials.push(new THREE.MeshStandardMaterial({color: couleurBase, metalness: 1, emissive: 0x3B342B})); 
-	materials.push(new THREE.MeshBasicMaterial({color: 0xA31215})); 
+	materials.push(new THREE.MeshStandardMaterial({color: couleurBase, metalness: 1, emissive: new THREE.Color( 0x313131 )})); 
+	materials.push(new THREE.MeshStandardMaterial({color: couleurAlt1, metalness: 1, emissive: new THREE.Color( 0xffffff ), emissiveIntensity: 0.4})); 
+	materials.push(new THREE.MeshStandardMaterial({color: couleurAlt2, metalness: 1, emissive: new THREE.Color( 0xffffff ), emissiveIntensity: 0.2})); 
 	
 	
 	
@@ -176,20 +188,26 @@ $(document).ready(function(){
 	
 	
 	
-	/*
+/*	
 	
 	//	INDICATEURS LUMINEUX
 
 	
-	var sphere = new THREE.SphereGeometry( 0.05, 16, 8 );
+	var sphere = new THREE.SphereGeometry( 0.2, 32, 32 );
+	
+	
 
-
-	var lumierep0 = new THREE.PointLight( 0x8F220E, 0.5, 1, 2);
-	lumierep0.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0x8F220E, transparent: true, opacity: 0.7  } ) ) );
-	lumierep0.position.x = 0.5;
-	lumierep0.position.y = 0.75;
-	lumierep0.position.z = 0.5;
+	var lumierep0 = new THREE.PointLight( 0xC3C3C3, 0.2);
+	lumierep0.position.set(0.3, 0.5, 0);
+	//lumierep0.decay = 3;
+	lumierep0.distance = 1;
 	scene.add( lumierep0 );
+	
+	
+	var sphereSize = 1;
+	var pointLightHelper = new THREE.PointLightHelper( lumierep0, sphereSize );
+	scene.add( pointLightHelper );
+	
 
 
 	var lumierep1 = new THREE.PointLight( 0x00D7AB, 0.5, 1, 2);
@@ -449,12 +467,14 @@ $(document).ready(function(){
 		return array;
 	}
 	
-	function afficherFacesInters(page){
+	function afficherFacesInters(page, m){
 		
 		var faces = facesInteractives[page];
 		
-		scene.getObjectByName(faces[0].obj).material = genererMaterials(faces[0].face, materials[0], materials[1]);
-		scene.getObjectByName(faces[1].obj).material = genererMaterials(faces[1].face, materials[0], materials[1]);
+		scene.getObjectByName(faces[0].obj).material = genererMaterials(faces[0].face, materials[0], materials[m]);
+		scene.getObjectByName(faces[1].obj).material = genererMaterials(faces[1].face, materials[0], materials[m]);
+		
+		
 		
 	}
 	
@@ -479,14 +499,14 @@ $(document).ready(function(){
 		if(nbrClics===1){
 			
 			
-			afficherFacesInters(0);
-			afficherFacesInters(1);
+			afficherFacesInters(0, 1);
+			afficherFacesInters(1, 2);
 
 			
 		}else if(nbrClics===2){
 			
-			afficherFacesInters(2);
-			afficherFacesInters(3);
+			afficherFacesInters(2, 1);
+			afficherFacesInters(3, 2);
 			
 		}
 	}
