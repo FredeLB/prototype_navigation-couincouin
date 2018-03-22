@@ -130,11 +130,11 @@ $(document).ready(function(){
 	octahedron.sortFacesByMaterialIndex();
 
 	
-	var couleurBase = 0x262020;
-	var couleurp0 = 0xA0B8BC;
-	var couleurp1 = 0xFF1F00;
-	var couleurp2 = 0xFFF06D;
-	var couleurp3 = 0x6E00C1;
+	var couleurBase = "rgb(38,32,32)";
+	var couleurp0 = "rgb(160,184,188)";
+	var couleurp1 = "rgb(255,31,0)";
+	var couleurp2 = "rgb(255,240,109)";
+	var couleurp3 = "rgb(110,0,193)";
 
 	
 	//MATERIALS
@@ -142,11 +142,11 @@ $(document).ready(function(){
 	var materials = [];
 	
 	
-	materials.push(new THREE.MeshStandardMaterial({color: couleurBase, metalness: 1, emissive: new THREE.Color( 0x313131 )})); 
-	materials.push(new THREE.MeshStandardMaterial({color: couleurp0, metalness: 1, emissive: new THREE.Color( 0xffffff ), emissiveIntensity: 0.4})); 
-	materials.push(new THREE.MeshStandardMaterial({color: couleurp1, metalness: 1, emissive: new THREE.Color( 0xffffff ), emissiveIntensity: 0.2}));  
-	materials.push(new THREE.MeshStandardMaterial({color: couleurp2, metalness: 1, emissive: new THREE.Color( 0xffffff ), emissiveIntensity: 0.2}));  
-	materials.push(new THREE.MeshStandardMaterial({color: couleurp3, metalness: 1, emissive: new THREE.Color( 0xffffff ), emissiveIntensity: 0.2})); 
+	materials.push(new THREE.MeshStandardMaterial({color: new THREE.Color(couleurBase), metalness: 1, emissive: new THREE.Color( 0x313131 )})); 
+	materials.push(new THREE.MeshStandardMaterial({color: new THREE.Color(couleurp0), metalness: 1, emissive: new THREE.Color( 0xffffff ), emissiveIntensity: 0.4})); 
+	materials.push(new THREE.MeshStandardMaterial({color: new THREE.Color(couleurp1), metalness: 1, emissive: new THREE.Color( 0xffffff ), emissiveIntensity: 0.2}));  
+	materials.push(new THREE.MeshStandardMaterial({color: new THREE.Color(couleurp2), metalness: 1, emissive: new THREE.Color( 0xffffff ), emissiveIntensity: 0.2}));  
+	materials.push(new THREE.MeshStandardMaterial({color: new THREE.Color(couleurp3), metalness: 1, emissive: new THREE.Color( 0xffffff ), emissiveIntensity: 0.2})); 
 	
 	
 	
@@ -515,20 +515,27 @@ $(document).ready(function(){
 			
 		}
 	}
+	
+	
+
+	
+    
+	
 
 	function reperesCouleurs(){
-		
+				
 		var triangles = document.getElementsByClassName("triangle");
-		
 		var couleurs = [couleurp0, couleurp1, couleurp2, couleurp3];
 		
-		for(var i=0; i<triangles.length; i++){
+		for(var i=0; i<4; i++){
 			
-			triangles[0].style.color = couleurs[i];
-		
+			triangles[i].style.color = couleurs[i];
+			
 		}
 		
 	}
+	
+
 	
 	
 
@@ -600,7 +607,7 @@ $(document).ready(function(){
 	
 	animate();
 	
-	reperesCouleurs()
+	reperesCouleurs();
 		
 	window.addEventListener( 'resize', onWindowResize, false );
 	document.addEventListener("click", funcDansLaZone, false);
