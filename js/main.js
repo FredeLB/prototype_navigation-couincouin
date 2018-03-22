@@ -109,6 +109,7 @@ $(document).ready(function(){
 	controls.autoRotate = true;
 	controls.maxPolarAngle = Math.PI/3;
 	controls.rotateSpeed = 0.4;
+	console.log(controls);
 	
 	
 	
@@ -190,59 +191,6 @@ $(document).ready(function(){
 	scene.add( pivot2 );
 	scene.add( pivot3 );
 	scene.add( pivot4 );
-	
-	
-	
-/*	
-	
-	//	INDICATEURS LUMINEUX
-
-	
-	var sphere = new THREE.SphereGeometry( 0.2, 32, 32 );
-	
-	
-
-	var lumierep0 = new THREE.PointLight( 0xC3C3C3, 0.2);
-	lumierep0.position.set(0.3, 0.5, 0);
-	//lumierep0.decay = 3;
-	lumierep0.distance = 1;
-	scene.add( lumierep0 );
-	
-	
-	var sphereSize = 1;
-	var pointLightHelper = new THREE.PointLightHelper( lumierep0, sphereSize );
-	scene.add( pointLightHelper );
-	
-
-
-	var lumierep1 = new THREE.PointLight( 0x00D7AB, 0.5, 1, 2);
-	lumierep1.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0x00D7AB, transparent: true, opacity: 0.7  } ) ) );
-	lumierep1.position.x = -0.5;
-	lumierep1.position.y = 0.75;
-	lumierep1.position.z = -0.5;
-	scene.add( lumierep1 );
-
-
-	var lumierep2 = new THREE.PointLight( 0xC5C40D, 0.5, 1, 2);
-	lumierep2.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0xC5C40D, transparent: true, opacity: 0.7  } ) ) );
-	lumierep2.position.x = -0.5;
-	lumierep2.position.y = 0.75;
-	lumierep2.position.z = 0.5;
-	scene.add( lumierep2 );
-
-
-	var lumierep3 = new THREE.PointLight( 0xC50CD0, 0.5, 1, 2);
-	lumierep3.add( new THREE.Mesh( sphere, new THREE.MeshBasicMaterial( { color: 0xC50CD0, transparent: true, opacity: 0.7  } ) ) );
-	lumierep3.position.x = 0.5;
-	lumierep3.position.y = 0.75;
-	lumierep3.position.z = -0.5;
-	scene.add( lumierep3 );
-	
-	
-	*/
-	
-	
-
 	
 
 	
@@ -640,13 +588,15 @@ $(document).ready(function(){
 	
 	$('#modalsection').on('show.bs.modal', function (e) {
 		
-	  		flagInteractivite = false;
+	  	flagInteractivite = false;
+		controls.enabled = false;
 		
 	});
 	
 	$('#modalsection').on('hidden.bs.modal', function (e) {
 		
-	  		flagInteractivite = true;
+	  	flagInteractivite = true;
+		controls.enabled = true;
 		
 	});
 
