@@ -196,13 +196,8 @@ $(document).ready(function(){
 
 	
 	
-	//		L'Histoire des écritures
 	
 
-	
-	
-	
-	
 	
 	
 	
@@ -582,7 +577,6 @@ $(document).ready(function(){
 		
 		flagAnimationCouinCouin = true;
 		
-		console.log(premiersClics);
 		
 		if(premiersClics===0){
 						
