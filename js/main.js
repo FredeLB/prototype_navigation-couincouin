@@ -85,6 +85,7 @@ $(document).ready(function(){
 		
 	];
 	
+	var titresSections = ["À propos", "Compétences", "Projets", "Contact"];
 
 	
 
@@ -130,8 +131,10 @@ $(document).ready(function(){
 
 	
 	var couleurBase = 0x262020;
-	var couleurAlt1 = 0xA0B8BC;
-	var couleurAlt2 = 0xFF1F00;
+	var couleurp0 = 0xA0B8BC;
+	var couleurp1 = 0xFF1F00;
+	var couleurp2 = 0xFFF06D;
+	var couleurp3 = 0x6E00C1;
 
 	
 	//MATERIALS
@@ -140,8 +143,10 @@ $(document).ready(function(){
 	
 	
 	materials.push(new THREE.MeshStandardMaterial({color: couleurBase, metalness: 1, emissive: new THREE.Color( 0x313131 )})); 
-	materials.push(new THREE.MeshStandardMaterial({color: couleurAlt1, metalness: 1, emissive: new THREE.Color( 0xffffff ), emissiveIntensity: 0.4})); 
-	materials.push(new THREE.MeshStandardMaterial({color: couleurAlt2, metalness: 1, emissive: new THREE.Color( 0xffffff ), emissiveIntensity: 0.2})); 
+	materials.push(new THREE.MeshStandardMaterial({color: couleurp0, metalness: 1, emissive: new THREE.Color( 0xffffff ), emissiveIntensity: 0.4})); 
+	materials.push(new THREE.MeshStandardMaterial({color: couleurp1, metalness: 1, emissive: new THREE.Color( 0xffffff ), emissiveIntensity: 0.2}));  
+	materials.push(new THREE.MeshStandardMaterial({color: couleurp2, metalness: 1, emissive: new THREE.Color( 0xffffff ), emissiveIntensity: 0.2}));  
+	materials.push(new THREE.MeshStandardMaterial({color: couleurp3, metalness: 1, emissive: new THREE.Color( 0xffffff ), emissiveIntensity: 0.2})); 
 	
 	
 	
@@ -272,8 +277,9 @@ $(document).ready(function(){
 
 			if((identifierLien(nomObjetTouche, faceTouchee)===null)===false){
 
-				$('#modalTest .modal-body').html("Bienvenue sur la page " + identifierLien(nomObjetTouche, faceTouchee));
-				$('#modalTest').modal('toggle');
+				$('#modalsection .modal-body').html("Bienvenue sur la page " + identifierLien(nomObjetTouche, faceTouchee));
+				$('#titresection').html(titresSections[identifierLien(nomObjetTouche, faceTouchee)]);
+				$('#modalsection').modal('toggle');
 
 			}
 		}
@@ -494,7 +500,6 @@ $(document).ready(function(){
 	function changerMaterials(){
 		
 		resetMesh();
-		console.log("changerMaterials()");
 		
 		if(nbrClics===1){
 			
@@ -505,12 +510,25 @@ $(document).ready(function(){
 			
 		}else if(nbrClics===2){
 			
-			afficherFacesInters(2, 1);
-			afficherFacesInters(3, 2);
+			afficherFacesInters(2, 3);
+			afficherFacesInters(3, 4);
 			
 		}
 	}
 
+	function reperesCouleurs(){
+		
+		var triangles = document.getElementsByClassName("triangle");
+		
+		var couleurs = [couleurp0, couleurp1, couleurp2, couleurp3];
+		
+		for(var i=0; i<triangles.length; i++){
+			
+			triangles[0].style.color = couleurs[i];
+		
+		}
+		
+	}
 	
 	
 
@@ -581,6 +599,9 @@ $(document).ready(function(){
 //========== CENTRE D'APPELS BONJPOUR/HI ===============
 	
 	animate();
+	
+	reperesCouleurs()
+		
 	window.addEventListener( 'resize', onWindowResize, false );
 	document.addEventListener("click", funcDansLaZone, false);
 	//document.addEventListener("touchstart", funcDansLaZone, false);
@@ -594,46 +615,33 @@ $(document).ready(function(){
 		
 		if(premiersClics===0){
 						
-			$("#btncouin").html("Cliquez encore!");
+			$("#btncouin").html("Alterner");
+			$("#indications").html("Allez-y, cliquez dans l'écran pour faire bouger le couin-couin<br> ou sur les faces colorées pour accéder aux différentes sections. Pour en découvrir plus, cliquez sur « ALTERNER ».");
+			
 			premiersClics++;
 			flagInteractivite = true;
 						
-		}else if(nbrClics>=1){
+		}else if(nbrClics===1){
 			
-			$("#btncouin").html("Allez-y, encore!");
+			$("#indications").removeClass("font-weight-bold").html("Voilà, c'est pas mal ça. Bonne visite.");
+			$("#txtaccueil ul").removeClass("invisible");
 			
 		}
-		
 				
 		
 	});
 	
+	$('#modalsection').on('show.bs.modal', function (e) {
+		
+	  		flagInteractivite = false;
+		
+	});
 	
-	
-	
-	
-	//Aide pour les axes: x=rouge y=vert z=bleu
-	
-/*	var axesScene = new THREE.AxesHelper( 6 );
-	//var axesOcta1 = new THREE.AxesHelper( 4 );
-	scene.add( axesScene );
-	//pivot1.add( axesOcta1 );
-	
-	//	HELPER LUMIERE
-	
-	var sphereSize = 1;
-	var pointLightHelper = new THREE.PointLightHelper( pointLight, sphereSize );
-	scene.add( pointLightHelper );*/
-	
-	
-	
-	//Zone de tests
-	
+	$('#modalsection').on('hidden.bs.modal', function (e) {
+		
+	  		flagInteractivite = true;
+		
+	});
 
-
-	
-	
-	
-	
 
 });

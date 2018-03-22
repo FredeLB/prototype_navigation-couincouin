@@ -116,10 +116,9 @@ body {
 	
 }
 
-p.position-fixed {
+div.position-fixed {
 	
-	top: 75%;
-	/*left: 25%;*/
+	top: 70%;
 	width: 100%;
 }
 
@@ -129,6 +128,31 @@ h1 {
 	width: 100%;
 	
 }
+
+span.triangle0{
+	
+	color: #A0B8BC;
+	
+}
+
+span.triangle1{
+	
+	color: #A0B8BC;
+	
+}
+
+span.triangle2{
+	
+	color: #A0B8BC;
+	
+}
+
+span.triangle3{
+	
+	color: #A0B8BC;
+	
+}
+
 
 
 
