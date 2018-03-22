@@ -22,6 +22,8 @@ $(document).ready(function(){
 	//scene.fog = new THREE.Fog( 0x000000, 1 );
 	
 	
+	
+	
 	//		LUMIIÈRE
 
 	var pointLight = new THREE.PointLight( 0xE9D09B, 3);
@@ -109,7 +111,6 @@ $(document).ready(function(){
 	controls.autoRotate = true;
 	controls.maxPolarAngle = Math.PI/3;
 	controls.rotateSpeed = 0.4;
-	console.log(controls);
 	
 	
 	
@@ -195,6 +196,19 @@ $(document).ready(function(){
 
 	
 	
+	//		L'Histoire des écritures
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	//Pour s'adapter quand la fenêtre rapetisse/s'aggrandit
 	
 	function onWindowResize() {
@@ -215,8 +229,9 @@ $(document).ready(function(){
 		
 		if(flagInteractivite===true){
 		
-		/*	console.log(event);
-			//console.log(danslazone);
+			/*	
+			console.log(event);
+			console.log(danslazone);
 			console.log("Id de l'objet: " + nomObjetTouche);
 			console.log("Face touchée: " + faceTouchee);
 			console.log("Lien cliqué = " + identifierLien(nomObjetTouche, faceTouchee));*/
@@ -535,6 +550,7 @@ $(document).ready(function(){
 			
 		}
 		
+		$("#txtaccueil .motscles").css("color", couleurp0);
 		
 		renderer.render(scene, camera);
 		
@@ -566,21 +582,25 @@ $(document).ready(function(){
 		
 		flagAnimationCouinCouin = true;
 		
-		console.log(nbrClics);
+		console.log(premiersClics);
 		
 		if(premiersClics===0){
 						
 			$("#btncouin").html("Alterner");
-			$("#indications").html("Allez-y, cliquez dans l'écran pour faire bouger le couin-couin<br> ou sur les faces colorées pour accéder aux différentes sections. Pour en découvrir plus, cliquez sur « ALTERNER ».");
+			$("#indications").html("Allez-y, cliquez dans <span class='motscles'>l'écran</span> pour faire bouger le <span class='motscles'>couin-couin</span><br> ou sur les <span class='motscles'>faces colorées</span> pour accéder aux différentes <span class='motscles'>sections</span>. Pour en découvrir plus, cliquez sur <span class='motscles'>ALTERNER</span>");
 			
 			premiersClics++;
 			flagInteractivite = true;
 						
+		}else if(premiersClics>=2){
+			
+			$("#indications").removeClass("font-weight-bold").html("");
+			
 		}else if(nbrClics===1){
 			
 			$("#indications").removeClass("font-weight-bold").html("Voilà, c'est pas mal ça. Bonne visite.");
 			$("#txtaccueil ul").removeClass("invisible");
-			
+			premiersClics++;	
 		}
 				
 		
