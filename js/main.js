@@ -575,7 +575,7 @@ $(document).ready(function(){
 	//document.addEventListener("touchstart", funcDansLaZone, false);
 	document.addEventListener( 'mousemove', onMouseMove, false );
 	
-	$("#btncouin").on('click touchstart', function(e){
+	$("#btncouin").on('click touchend', function(e){
 		
 		e.preventDefault();
 		
