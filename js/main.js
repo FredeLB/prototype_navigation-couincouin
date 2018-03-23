@@ -573,7 +573,7 @@ $(document).ready(function(){
 	//document.addEventListener("touchstart", funcDansLaZone, false);
 	document.addEventListener( 'mousemove', onMouseMove, false );
 	
-	$("btncouin").one('click tap', function(){
+	$("#btncouin").on('click tap', function(){
 		
 		flagAnimationCouinCouin = true;
 		
