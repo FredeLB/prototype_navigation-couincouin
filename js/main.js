@@ -110,7 +110,9 @@ $(document).ready(function(){
 	controls.enableZoom = false;
 	controls.autoRotate = true;
 	controls.maxPolarAngle = Math.PI/3;
-	controls.rotateSpeed = 0.05;
+	controls.rotateSpeed = 0.2;
+	controls.autoRotateSpeed = 0.5;
+	console.log(controls);
 	
 	
 	
