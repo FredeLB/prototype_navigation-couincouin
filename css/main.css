@@ -102,6 +102,9 @@ textarea {
 
 body { 
 	margin: 0; 
+	
+	/* Disables pull-to-refresh but allows overscroll glow effects. */
+	overscroll-behavior-y: contain;
 }
 			
 /*canvas { 
