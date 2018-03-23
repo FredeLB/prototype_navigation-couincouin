@@ -572,7 +572,6 @@ $(document).ready(function(){
 		
 	window.addEventListener( 'resize', onWindowResize, false );
 	document.addEventListener("click", funcDansLaZone, false);
-	//document.addEventListener("touchstart", funcDansLaZone, false);
 	document.addEventListener( 'mousemove', onMouseMove, false );
 	
 	$("#btncouin").on('click touchend', function(e){
