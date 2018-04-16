@@ -237,8 +237,9 @@ $(document).ready(function(){
 
 			if((identifierLien(nomObjetTouche, faceTouchee)===null)===false){
 
-				$('#modalsection .modal-body').html("Bienvenue sur la page " + identifierLien(nomObjetTouche, faceTouchee));
-				$('#titresection').html(titresSections[identifierLien(nomObjetTouche, faceTouchee)]);
+				/*$('#modalsection .modal-body').html("Bienvenue sur la page " + identifierLien(nomObjetTouche, faceTouchee));*/
+                console.log(identifierLien(nomObjetTouche, faceTouchee));
+				//$('#titresection').html(titresSections[identifierLien(nomObjetTouche, faceTouchee)]);
 				$('#modalsection').modal('toggle');
 
 			}
