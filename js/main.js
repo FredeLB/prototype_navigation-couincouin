@@ -236,6 +236,9 @@ $(document).ready(function(){
 
 
 			if((identifierLien(nomObjetTouche, faceTouchee)===null)===false){
+                
+                $(".modal-body > div").addClass("d-none");
+                $(".modal-body > div").eq(identifierLien(nomObjetTouche, faceTouchee)).removeClass("d-none");
 
 				/*$('#modalsection .modal-body').html("Bienvenue sur la page " + identifierLien(nomObjetTouche, faceTouchee));*/
                 console.log(identifierLien(nomObjetTouche, faceTouchee));
