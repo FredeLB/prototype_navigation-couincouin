@@ -20,6 +20,7 @@ $(document).ready(function(){
 	var couleurBG = new THREE.Color( 0xffffff );
 	scene.background = couleurBG;
 	//scene.fog = new THREE.Fog( 0x000000, 1 );
+	console.log(scene);
 	
 	
 	
