@@ -620,6 +620,14 @@ $(document).ready(function(){
 		controls.enabled = true;
 		
 	});
+    
+    
+    //========== STYLISME - CLASSES BOOSTRAP 4 ===============
 
+    
+    $("#modalsection h2").addClass("mb-4");
+    
+    $("#modalsection .card").addClass("");
+    
 
 });

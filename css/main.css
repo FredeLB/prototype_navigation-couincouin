@@ -151,6 +151,14 @@ h1 {
     height: auto !important;
 }
 
+/* CARDS PROJETS */
+
+div.card {
+    
+    min-height: 70vh;
+    
+}
+
 
 
 
