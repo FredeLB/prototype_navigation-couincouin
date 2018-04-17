@@ -15,6 +15,7 @@ $(document).ready(function(){
 	divCouincouin.appendChild(renderer.domElement);
 
 	
+	
 	//Scene
 	var scene = new THREE.Scene();
 	var couleurBG = new THREE.Color( 0xffffff );
@@ -113,7 +114,6 @@ $(document).ready(function(){
 	controls.maxPolarAngle = Math.PI/3;
 	controls.rotateSpeed = 0.5;
 	controls.autoRotateSpeed = 0.5;
-	console.log(controls);
 	
 	
 	
