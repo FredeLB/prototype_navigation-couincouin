@@ -629,6 +629,16 @@ $(document).ready(function(){
     $("#modalsection h2").addClass("mb-4");
     
     $("#modalsection .card").addClass("");
+	
+	var $competences = $("#competences ul li");
+	
+	console.log($competences);
+			
+	var couleurs = [couleurp0, couleurp1, couleurp2, couleurp3];
+	
+	
+	
+		
     
 
 });
