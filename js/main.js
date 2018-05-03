@@ -11,7 +11,7 @@ $(document).ready(function(){
 	var divCouincouin = document.getElementById("couincouin");
 	document.body.appendChild( divCouincouin );
 	var renderer = new THREE.WebGLRenderer();
-	renderer.setSize( window.innerWidth, window.innerHeight );
+	renderer.setSize( window.innerWidth*0.9, window.innerHeight*0.9 );
 	divCouincouin.appendChild(renderer.domElement);
 
 	
@@ -213,7 +213,7 @@ $(document).ready(function(){
 		
 		camera.aspect = window.innerWidth / window.innerHeight;
 		camera.updateProjectionMatrix();
-		renderer.setSize( window.innerWidth, window.innerHeight );
+		renderer.setSize( window.innerWidth*0.9, window.innerHeight*0.9 );
 		
 	}
 
