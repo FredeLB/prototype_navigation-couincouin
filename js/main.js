@@ -662,6 +662,8 @@ $(document).ready(function(){
     
     //========== STYLISME PARESSEUX - CLASSES BOOSTRAP 4 & CIE ===============
 
+    //Couleur texte accueil
+    $("h1, #textaccueil, #indications, #legendesections li").addClass("text-light");
     
     $("#modalsection h2").addClass("mb-4");
     

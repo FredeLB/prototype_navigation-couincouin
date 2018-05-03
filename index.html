@@ -38,11 +38,11 @@
             <p class="browserupgrade">Vous utilisez une version de navigateur <strong>désuète</strong>. S'il-vous-plait, <a href="http://browsehappy.com/">mettez à jour votre navigateur</a> pour améliorer votre expérience.</p>
         <![endif]-->
 		<h1 class="d-block position-fixed text-center mt-0 mt-md-5">Frédérique Larouche</h1>
-  		<div id="txtaccueil" class="d-block text-light position-fixed text-center px-1 pb-3">
+  		<div id="txtaccueil" class="d-block position-fixed text-center px-1 pb-3">
 			<a href="javascript:;" id="btncouin" class="btn btn-lg btn-secondary text-uppercase my-2">Activer</a>
-			<p id="indications" class="text-dark mt-1 font-weight-bold">Ne soyez pas timide.<br>
+			<p id="indications" class="mt-1 font-weight-bold">Ne soyez pas timide.<br>
  Cliquez sur le <span class="motscles">bouton</span>.</p>
-			<ul class="text-dark list-unstyled text-uppercase font-weight-bold invisible">
+			<ul id="legendesections" class="list-unstyled text-uppercase font-weight-bold invisible">
 				<li><span class="triangle">&#9660;</span>// À propos</li>
 				<li><span class="triangle">&#9660;</span>// Compétences</li>
 				<li><span class="triangle">&#9660;</span>// Projets </li>
@@ -55,7 +55,7 @@
 		
 	 <div id="couincouin"></div> 
 		
-    <div id="modalsection" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-backdrop="static">
+    <div id="modalsection" class="modal fade bd-example-modal-lg pl-0" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" data-backdrop="static">
 
         <div class="modal-dialog modal-full modal-dialog-centered text-center">
 
@@ -112,9 +112,9 @@
                    
                     <!--    PROJETS      -->
                     
-                    <div class="col-12 col-md-12 col-lg-8 d-none" id="projets">
+                    <div class="col-12 col-md-12 col-xl-8 d-none" id="projets">
                         <h2>Projets</h2>
-                        <div class="row">
+                        <div class="row d-flex-column align-items-center justify-content-center">
                             <div class="col-11 col-lg-6 mb-3">
                                 <div class="card">
                                    <a href="https://fredelb.github.io/call-hibry/" class="card-link" target="_blank" title="Démo | Call-Hibry">
