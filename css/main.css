@@ -101,6 +101,7 @@ textarea {
 
 
 body { 
+    background: #000000;
 	margin: 0; 
 	height: auto;
 	/* Disables pull-to-refresh but allows overscroll glow effects. */
@@ -164,6 +165,10 @@ div.card {
     min-height: 70vh;
     
 }
+
+/* -- Liens -- */
+
+
 
 
 

@@ -18,10 +18,9 @@ $(document).ready(function(){
 	
 	//Scene
 	var scene = new THREE.Scene();
-	var couleurBG = new THREE.Color( 0xffffff );
+	var couleurBG = new THREE.Color( 0x000000 );
 	scene.background = couleurBG;
 	//scene.fog = new THREE.Fog( 0x000000, 0.015, 100 );
-	console.log(scene);
 	
 	
 	
@@ -147,11 +146,13 @@ $(document).ready(function(){
 	var materials = [];
 	
 	
-	materials.push(new THREE.MeshStandardMaterial({color: new THREE.Color(couleurBase), metalness: 1, emissive: new THREE.Color( 0x313131 )})); 
-	materials.push(new THREE.MeshStandardMaterial({color: new THREE.Color(couleurp0), metalness: 1, emissive: new THREE.Color( 0xffffff ), emissiveIntensity: 0.4})); 
-	materials.push(new THREE.MeshStandardMaterial({color: new THREE.Color(couleurp1), metalness: 1, emissive: new THREE.Color( 0xffffff ), emissiveIntensity: 0.2}));  
-	materials.push(new THREE.MeshStandardMaterial({color: new THREE.Color(couleurp2), metalness: 1, emissive: new THREE.Color( 0xffffff ), emissiveIntensity: 0.2}));  
-	materials.push(new THREE.MeshStandardMaterial({color: new THREE.Color(couleurp3), metalness: 1, emissive: new THREE.Color( 0xffffff ), emissiveIntensity: 0.2})); 
+	materials.push(new THREE.MeshStandardMaterial({color: new THREE.Color(couleurBase), metalness: 1, emissive: new THREE.Color( 0x413c39 ), polygonOffset: true, polygonOffsetUnits: 1, polygonOffsetUnits: -1})); 
+	materials.push(new THREE.MeshStandardMaterial({color: new THREE.Color(couleurp0), metalness: 1, emissive: new THREE.Color( 0xffffff ), emissiveIntensity: 0.4, polygonOffset: true, polygonOffsetUnits: 1, polygonOffsetUnits: -1})); 
+	materials.push(new THREE.MeshStandardMaterial({color: new THREE.Color(couleurp1), metalness: 1, emissive: new THREE.Color( 0xffffff ), emissiveIntensity: 0.2, polygonOffset: true, polygonOffsetUnits: 1, polygonOffsetUnits: -1}));  
+	materials.push(new THREE.MeshStandardMaterial({color: new THREE.Color(couleurp2), metalness: 1, emissive: new THREE.Color( 0xffffff ), emissiveIntensity: 0.2, polygonOffset: true, polygonOffsetUnits: 1, polygonOffsetUnits: -1}));  
+	materials.push(new THREE.MeshStandardMaterial({color: new THREE.Color(couleurp3), metalness: 1, emissive: new THREE.Color( 0xffffff ), emissiveIntensity: 0.2, polygonOffset: true, polygonOffsetUnits: 1, polygonOffsetUnits: -1})); 
+    
+    //console.log(materials[0]);
 	
 	
 	
@@ -164,6 +165,33 @@ $(document).ready(function(){
 	octa2.name = "octa2";
 	octa3.name = "octa3";
 	octa4.name = "octa4";
+    
+    
+    //wireframe visible - http://jsfiddle.net/tfjvggfu/24/
+    
+    // wireframe - new way
+    
+    var materialsWF = [];
+    
+    for(var i=0; i<4; i++){
+        
+        var geometryWF = new THREE.WireframeGeometry( octahedron ); // or WireframeGeometry
+        var materialWF = new THREE.LineBasicMaterial( { color: 0x000000, linewidth: 3 } );
+        materialWF.polygonOffset = true;
+        materialWF.polygonOffsetUnits = 1;
+        materialWF.polygonOffsetFactor = 2;
+        materialLines = new THREE.LineSegments( geometryWF, materialWF );
+        materialLines.name = "wireframe";
+        materialsWF.push(materialLines);
+        
+    }
+    
+    octa1.add( materialsWF[0]);
+    octa2.add( materialsWF[1]);
+    octa3.add( materialsWF[2]);
+    octa4.add( materialsWF[3]);
+        
+    
 	
 	//Aide pour les axes: x=rouge y=vert z=bleu
 	//Positions
@@ -224,6 +252,8 @@ $(document).ready(function(){
 		
 	
 	function funcDansLaZone(event){
+        
+        //console.log(event);
 		
 		if(flagInteractivite===true){
 		
@@ -527,16 +557,22 @@ $(document).ready(function(){
 		raycaster.setFromCamera( mouse, camera );
 
 		// calculate objects intersecting the picking ray
-		var intersects = raycaster.intersectObjects( scene.children, true );
+		var intersects = raycaster.intersectObjects( [octa1, octa2, octa3, octa4] );
 		danslazone = intersects.length > 0;
+        
+        //console.log(intersects);
 		
 		//ANALYSER L'OBJET INTERSECT
 		if(danslazone===true){
+            
+            //console.log(intersects);
 							
 			var intersect = intersects[0];
 			faceTouchee = intersect.faceIndex;
 			var objetTouche = intersect.object;
 			nomObjetTouche = intersect.object.name;
+            
+            //console.log(intersect);
 			
 			//	TEST
 			
@@ -577,7 +613,7 @@ $(document).ready(function(){
 		
 	window.addEventListener( 'resize', onWindowResize, false );
 	document.addEventListener("click", funcDansLaZone, false);
-	document.addEventListener("touchstart", funcDansLaZone, false);
+	//document.addEventListener("touchstart", funcDansLaZone, false);
 	document.addEventListener( 'mousemove', onMouseMove, false );
 	
 	$("#btncouin").on('click touchend', function(e){
