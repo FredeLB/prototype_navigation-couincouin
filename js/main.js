@@ -287,6 +287,13 @@ $(document).ready(function(){
 		mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;	
 		
 	}
+    
+    function onTap(event){
+        
+        mouse.x = ( event.touches[0].pageX / window.innerWidth ) * 2 - 1;
+        mouse.y = - ( event.touches[0].pageX / window.innerHeight ) * 2 + 1;
+        
+    }
 	
 	
 	
@@ -613,8 +620,8 @@ $(document).ready(function(){
 		
 	window.addEventListener( 'resize', onWindowResize, false );
 	document.addEventListener("click", funcDansLaZone, false);
-	//document.addEventListener("touchstart", funcDansLaZone, false);
-	document.addEventListener( 'mousemove', onMouseMove, false );
+	document.addEventListener("touchend", funcDansLaZone, false);
+	document.addEventListener( 'mousemove', onTap, false );
 	
 	$("#btncouin").on('click touchend', function(e){
 		
