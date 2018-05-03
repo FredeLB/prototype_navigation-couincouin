@@ -166,12 +166,31 @@ div.card {
     
 }
 
-/* -- Liens -- */
+/* -- Btn couincouin-- */
 
+#modalsection .modal-header button {
+    
+    padding: 5vh;
+    position: fixed;
+    top:0;
+    right: 0;
+    z-index:200;
+    
+}
 
+#modalsection .modal-header button img {
+    
+    min-width: 50px;
+    width: 5vw;
+}
 
-
-
+#modalsection .modal-header {
+    
+    height: 0;
+    overflow: visible;
+    padding: 0;
+    
+}
 
 
 

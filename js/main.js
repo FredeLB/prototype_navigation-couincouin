@@ -674,8 +674,10 @@ $(document).ready(function(){
     $("h1, #textaccueil, #indications, #legendesections li").addClass("text-light");
     
     $("#modalsection h2").addClass("mb-4");
-    
+        
     $("#modalsection .card").addClass("");
+    
+    $("#modalsection .modal-body > div").addClass("py-5");
 			
 	var couleurs = [couleurp0, couleurp1, couleurp2, couleurp3];
     
@@ -691,6 +693,12 @@ $(document).ready(function(){
     
     $("#contact a").addClass("btn btn-secondary d-flex-column");
 	
+    console.log("z-index du bouton header de la modale : " + $("#modalsection .modal-header button").css("z-index"));
+    console.log("z-index du body de la modale : " + $("#modalsection .modal-body").css("z-index"));
+    
+    //$("#modalsection .modal-header").css("margin-bottom", "-15vh");
+
+    
 	
 	
 		
