@@ -20,27 +20,27 @@ $(document).ready(function(){
 	var scene = new THREE.Scene();
 	var couleurBG = new THREE.Color( 0xffffff );
 	scene.background = couleurBG;
-	//scene.fog = new THREE.Fog( 0x000000, 1 );
+	//scene.fog = new THREE.Fog( 0x000000, 0.015, 100 );
 	console.log(scene);
 	
 	
 	
 	
-	//		LUMIIÈRE
+	//		LUMIIÈRES
 
-	var pointLight = new THREE.PointLight( 0xE9D09B, 3);
-	pointLight.position.set( 0, 4, 2 );
-	pointLight.decay = 10;
+	var pointLight1 = new THREE.PointLight( 0xE9D09B, 4);
+	pointLight1.position.set( 0, 4, 2 );
+	pointLight1.decay = 10;
 	
-	
-	scene.add( pointLight );
+	scene.add( pointLight1 );
+    
 	
 
 	//	REPERES LUMIERES
-/*	var sphereSize = 1;
-	var pointLightHelper = new THREE.PointLightHelper( pointLight, sphereSize );
-	scene.add( pointLightHelper );*/
-	
+//	var sphereSize = 1;
+//	var pointLightHelper1 = new THREE.PointLightHelper( pointLight1, sphereSize );
+//	scene.add( pointLightHelper1 );
+
 	
 	
 
@@ -135,7 +135,7 @@ $(document).ready(function(){
 	octahedron.sortFacesByMaterialIndex();
 
 	
-	var couleurBase = "rgb(38,32,32)";
+	var couleurBase = "rgb(99,84,66)";
 	var couleurp0 = "rgb(160,184,188)";
 	var couleurp1 = "rgb(255,31,0)";
 	var couleurp2 = "rgb(255,240,109)";
@@ -624,18 +624,26 @@ $(document).ready(function(){
 	});
     
     
-    //========== STYLISME - CLASSES BOOSTRAP 4 ===============
+    //========== STYLISME PARESSEUX - CLASSES BOOSTRAP 4 & CIE ===============
 
     
     $("#modalsection h2").addClass("mb-4");
     
     $("#modalsection .card").addClass("");
-	
-	var $competences = $("#competences ul li");
-	
-	console.log($competences);
 			
 	var couleurs = [couleurp0, couleurp1, couleurp2, couleurp3];
+    
+    $("#competences li:odd").css("color", couleurp0);
+    
+    $("#projets .list-inline li:even").css("color", couleurp0);
+    
+    $("#apropos span").css("color", couleurp0);
+    
+    $("#projets .card-body a").addClass("btn btn-secondary text-uppercase");
+    
+    $("#projets .card-body").addClass("border-top");
+    
+    $("#contact a").addClass("btn btn-secondary d-flex-column");
 	
 	
 	
