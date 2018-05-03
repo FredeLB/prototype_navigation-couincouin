@@ -290,8 +290,7 @@ $(document).ready(function(){
     
     function onTap(event){
         
-        mouse.x = +(event.targetTouches[0].pageX / window.innerwidth) * 2 +-1;
-
+        mouse.x = (event.targetTouches[0].pageX / window.innerwidth) * 2 +-1;
         mouse.y = -(event.targetTouches[0].pageY / window.innerHeight) * 2 + 1;
         
     }
